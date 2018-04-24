@@ -1,0 +1,5 @@
+INSERT INTO TASK
+VALUES('1', 'First Task');
+
+INSERT INTO TASK
+VALUES('2', 'Second Task');

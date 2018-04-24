@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Main Page</title>
+
+		<script type='text/javascript' src="//unpkg.com/angular@^1.6.4/angular.js"></script>
+		<script type='text/javascript' src="//unpkg.com/moment@^2.18.1"></script>
+		<script type='text/javascript' src="//unpkg.com/moment-range@^3.0.3"></script>
+
+		<script type='text/javascript' src="//unpkg.com/angular-ui-tree@^2.22.5/dist/angular-ui-tree.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="//unpkg.com/angular-ui-tree@^2.22.5/dist/angular-ui-tree.min.css">
+
+		<script type='text/javascript' src="//unpkg.com/angular-native-dragdrop@^1.2.2/draganddrop.js"></script>
+
+		<script type='text/javascript' src="//unpkg.com/css-element-queries@^0.4.0/src/ElementQueries.js"></script>
+		<script type='text/javascript' src="//unpkg.com/css-element-queries@^0.4.0/src/ResizeSensor.js"></script>
+
+		<script type='text/javascript' src="//unpkg.com/jsplumb@^2.3.2"></script>
+
+		<link rel="stylesheet" type="text/css" href="//unpkg.com/font-awesome@^4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="//unpkg.com/bootstrap@^3.3.7/dist/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" type="text/css" href="style.css">-->
+
+		<script type='text/javascript' src="//unpkg.com/angular-gantt@latest"></script>
+		<link rel="stylesheet" type="text/css" href="//unpkg.com/angular-gantt@latest/dist/angular-gantt.css">
+
+		<script src="script.js"></script>
+	</head>
+	<body>
+
+		<!--<div ng-controller="ctrl">-->
+			<!--<h1>{{message}}</h1>-->
+		<div ng-app="plnkrGanttStable" ng-controller="ctrl">
+			<div gantt data=data>
+				<gantt-tree></gantt-tree>
+				<gantt-groups></gantt-groups>
+				<gantt-tooltips></gantt-tooltips>
+				<gantt-bounds></gantt-bounds>
+				<gantt-progress></gantt-progress>
+				<gantt-sortable></gantt-sortable>
+				<gantt-movable></gantt-movable>
+				<gantt-draw-task></gantt-draw-task>
+				<gantt-resize-sensor></gantt-resize-sensor>
+				<gantt-overlap></gantt-overlap>
+				<gantt-dependencies></gantt-dependencies>
+			</div>
+		</div>
+	</body>
+
+	<!--&lt;!&ndash;<script src="app.js"></script>&ndash;&gt;-->
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>-->
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>-->
+	<!--&lt;!&ndash;<script src="https://cdn.jsdelivr.net/angular.gantt/latest/angular-gantt.min.css"></script>&ndash;&gt;-->
+
+	<!--<script src="//cdn.jsdelivr.net/angular.gantt/latest/angular-gantt.min.js"></script>-->
+	<!--<script src="script.js"></script>-->
+</html>

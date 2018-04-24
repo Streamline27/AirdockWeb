@@ -1,0 +1,3 @@
+rootProject.name = 'airdock-web'
+
+includeBuild '../AirdockApi'
