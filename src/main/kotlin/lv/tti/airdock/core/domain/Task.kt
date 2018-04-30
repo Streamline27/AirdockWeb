@@ -1,11 +1,18 @@
 package lv.tti.airdock.core.domain
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity(name = "Task")
 data class Task(
-        @Id @Column(name = "id")          var id: Long,
-            @Column(name = "description") var description: String
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id")
+        var id: Long? = null,
+
+        @Column(name = "title")       var title: String,
+        @Column(name = "description") var description: String,
+
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id", referencedColumnName = "id") var user: User? = null
 )
