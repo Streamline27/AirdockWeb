@@ -13,23 +13,10 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-class EntityTest {
+class TaskTest {
 
     @Autowired lateinit var userRepository: UserRepository
     @Autowired lateinit var taskRepository: TaskRepository
-
-    @Test
-    fun `when user is persisted hibernate puts id in it`(){
-
-        val user = User(
-            name = "Vasja",
-            role = User.Role.ADMIN
-        )
-
-        userRepository.save(user)
-
-        assertNotNull(user.id)
-    }
 
     @Test
     fun `when task is persisted hibernate puts id in it`(){
@@ -64,7 +51,7 @@ class EntityTest {
         val userList = taskRepository.findByUserId(user.id?: 0)
 
         assertTrue(userList.size == 1)
-        assertTrue(userList.first().user?.id === user.id)
+        assertTrue(userList.first().user!!.equals(user))
     }
 
 }
