@@ -15,13 +15,13 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager
 @EnableWebSecurity
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
-    @Autowired lateinit var restAuthenticationEntryPoint : RestAuthenticationEntryPoint
+//    @Autowired lateinit var restAuthenticationEntryPoint : RestAuthenticationEntryPoint
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
                 // Allow
-                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html")
-                .permitAll()
+//                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html")
+//                .permitAll()
                 .anyRequest().permitAll()
 //                .anyRequest().authenticated()
 //                .and()
@@ -29,16 +29,16 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 //                .authenticationEntryPoint(restAuthenticationEntryPoint)
     }
 
-    @Bean
-    override fun userDetailsService(): UserDetailsService {
-        val user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build()
-
-        return InMemoryUserDetailsManager(user)
-    }
+//    @Bean
+//    override fun userDetailsService(): UserDetailsService {
+//        val user = User.withDefaultPasswordEncoder()
+//                .username("user")
+//                .password("password")
+//                .roles("USER")
+//                .build()
+//
+//        return InMemoryUserDetailsManager(user)
+//    }
 
 
 }

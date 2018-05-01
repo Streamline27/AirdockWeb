@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-@Component( "restAuthenticationEntryPoint" )
+//@Component( "restAuthenticationEntryPoint" )
 class RestAuthenticationEntryPoint : AuthenticationEntryPoint {
 
     override fun commence(
