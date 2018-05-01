@@ -14,5 +14,6 @@ data class Task(
         @Column(name = "description") var description: String,
 
         @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "user_id", referencedColumnName = "id") var user: User? = null
+        @JoinColumn(name = "user_id", referencedColumnName = "id")
+        var user: User? = null
 )
