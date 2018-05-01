@@ -13,4 +13,6 @@ class UserService {
 	lateinit var repository: UserRepository
 
 	fun getWorkers() = repository.findUserByRole(User.Role.WORKER)
+
+	fun getById(id: Long) = repository.getOne(id)
 }

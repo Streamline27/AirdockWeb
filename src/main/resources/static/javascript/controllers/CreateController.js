@@ -1,8 +1,4 @@
 app.controller('CreateController', function($scope, $http) {
-//	$('#toInput').datepicker({uiLibrary: 'bootstrap4'});
-//	$('#fromInput').datepicker({uiLibrary: 'bootstrap4'});
-
-
 	$scope.task = {
 		title: '',
 		assignee: '',
@@ -19,7 +15,6 @@ app.controller('CreateController', function($scope, $http) {
 	}
 
 	$http.get("/users/workers").then(function(response) {
-		console.log(response.data);
 		$scope.assignees = response.data;
 	})
 

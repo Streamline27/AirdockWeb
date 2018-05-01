@@ -1,8 +1,8 @@
-INSERT INTO TASK
-VALUES('1', 'First Task', 'Some description', null);
+INSERT INTO TASK(ID, TITLE, DESCRIPTION)
+VALUES('1', 'First Task', 'Some description');
 
-INSERT INTO TASK
-VALUES('2', 'Second Task', 'Some description', null);
+INSERT INTO TASK(ID, TITLE, DESCRIPTION)
+VALUES('2', 'Second Task', 'Some description');
 
 /******
     Creating users

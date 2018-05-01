@@ -25,7 +25,8 @@
 		<label for="assigneeInput" class="col-sm-1 col-form-label">Assignee</label>
 		<div class="col-sm-9">
 			<select ng-model='task.assignee' class="form-control" id="assigneeInput">
-				<option ng-repeat="assignee in assignees">{{assignee.name}}</option>
+				<option value={{null}}>Empty</option>
+				<option ng-repeat="assignee in assignees" value={{assignee.id}}>{{assignee.name}}</option>
 			</select>
 		</div>
 	</div>
