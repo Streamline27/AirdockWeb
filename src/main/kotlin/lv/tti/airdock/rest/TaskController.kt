@@ -17,6 +17,9 @@ class TaskController {
     @GetMapping("/{id}")
     fun getTask(@PathVariable("id") id : Long) = taskService.getTaskById(id)
 
+	@GetMapping()
+    fun getTasks() = taskService.getAllTasks()
+
     @PostMapping()
 	fun saveTask(@RequestBody task: TaskDto) {
 		taskService.saveTask(Task(

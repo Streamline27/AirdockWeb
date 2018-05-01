@@ -13,5 +13,8 @@ app.config(function($routeProvider){
         }).when('/create', {
             controller: 'CreateController',
             templateUrl: 'views/create.html'
-        });
+        }).when('/list', {
+			controller: 'TaskListController',
+			templateUrl: 'views/tasklist.html'
+		});
 });
