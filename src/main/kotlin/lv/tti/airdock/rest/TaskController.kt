@@ -7,8 +7,8 @@ import lv.tti.airdock.core.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
-@RestController()
-@RequestMapping("/tasks")
+@RestController
+@RequestMapping("/api/tasks")
 class TaskController {
 
     @Autowired lateinit var taskService: TaskService
