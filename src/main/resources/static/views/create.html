@@ -1,0 +1,33 @@
+<form>
+	<div class="form-group row">
+		<label for="nameInput" class="col-sm-1 col-form-label">Task Name</label>
+		<div class="col-sm-9">
+			<input ng-model='task.title' type="text" class="form-control" id="nameInput" placeholder="Enter Task Name"/>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="descriptionInput" class="col-sm-1 col-form-label">Description</label>
+		<div class="col-sm-9">
+			<textarea ng-model='task.description' class="form-control" id="descriptionInput" rows="2"></textarea>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="fromInput" class="col-sm-1 col-form-label">From</label>
+		<div class='col-sm-4 input-group'>
+			<input ng-model='task.from' type='date' class="form-control" id='fromInput'/>
+		</div>
+		<label for="toInput" class="col-sm-1 col-form-label">To</label>
+		<div class='col-sm-4 input-group'>
+			<input ng-model='task.to' type='date' class="form-control" id='toInput'/>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="assigneeInput" class="col-sm-1 col-form-label">Assignee</label>
+		<div class="col-sm-9">
+			<select ng-model='task.assignee' class="form-control" id="assigneeInput">
+				<option ng-repeat="assignee in assignees">{{assignee.name}}</option>
+			</select>
+		</div>
+	</div>
+	<button ng-click="submit()" type="submit" class="btn btn-primary">Submit</button>
+</form>

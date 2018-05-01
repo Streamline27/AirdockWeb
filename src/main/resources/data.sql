@@ -9,7 +9,7 @@ VALUES('2', 'Second Task', 'Some description', null);
  */
 
 INSERT INTO USER
-VALUES('1', 'Vladislav', 'USER');
+VALUES('1', 'Vladislav', 'WORKER');
 
 INSERT INTO CREDENTIALS
 VALUES('1', 'USER', '123', '1');

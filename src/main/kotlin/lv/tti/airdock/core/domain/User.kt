@@ -18,6 +18,6 @@ data class User(
 ) {
     enum class Role{
         ADMIN,
-        USER
+        WORKER
     }
 }

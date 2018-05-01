@@ -1,5 +1,7 @@
 package lv.tti.airdock.rest
 
+import lv.tti.airdock.core.domain.Task
+import lv.tti.airdock.core.dto.TaskDto
 import lv.tti.airdock.core.services.TaskService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -13,4 +15,8 @@ class TaskController {
     @GetMapping("/{id}")
     fun getTask(@PathVariable("id") id : Long) = taskService.getTaskById(id)
 
+    @PostMapping()
+	fun saveTask(@RequestBody task: TaskDto) {
+
+	}
 }
