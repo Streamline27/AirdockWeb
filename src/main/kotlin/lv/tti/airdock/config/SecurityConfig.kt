@@ -18,7 +18,9 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 //    @Autowired lateinit var restAuthenticationEntryPoint : RestAuthenticationEntryPoint
 
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests()
+        http.csrf().disable()
+                .authorizeRequests()
+
                 // Allow
 //                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html")
 //                .permitAll()
