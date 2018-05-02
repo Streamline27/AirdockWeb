@@ -1,7 +1,7 @@
 package lv.tti.airdock.rest
 
 import lv.tti.airdock.core.domain.Task
-import lv.tti.airdock.core.dto.TaskDto
+import lv.tti.airdock.dto.TaskDto
 import lv.tti.airdock.core.services.TaskService
 import lv.tti.airdock.core.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,12 +22,14 @@ class TaskController {
 
     @PostMapping()
 	fun saveTask(@RequestBody task: TaskDto) {
-		taskService.saveTask(Task(
-				title = task.title,
-				description = task.description,
-				start = task.from,
-				end = task.to,
-				user = if (task.assignee != null) userService.getById(task.assignee!!) else null
-		))
+		taskService.saveTask(
+				Task(
+					title = task.title,
+					description = task.description,
+					start = task.from,
+					end = task.to,
+					user = if (task.assignee != null) userService.getById(task.assignee!!) else null
+				)
+		)
 	}
 }

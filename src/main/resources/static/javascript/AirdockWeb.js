@@ -1,5 +1,5 @@
 
-var app = angular.module('AirdockWeb', ['ngRoute']);
+var app = angular.module('AirdockWeb', ['ngRoute', 'ngCookies']);
 
 app.config(function($routeProvider){
     $routeProvider
@@ -18,3 +18,17 @@ app.config(function($routeProvider){
 			templateUrl: 'views/tasklist.html'
 		});
 });
+
+app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $location, authService) {
+        $rootScope.$on('$routeChangeStart', function (event) {
+
+            if (!authService.isLoggedIn() && $location.path() !== '/login') {
+                console.log('DENY : Redirecting to Login');
+                event.preventDefault();
+                $location.path('/login');
+            }
+            else {
+                console.log('ALLOW');
+            }
+        });
+    }]);

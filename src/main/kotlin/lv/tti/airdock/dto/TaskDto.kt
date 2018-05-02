@@ -1,4 +1,4 @@
-package lv.tti.airdock.core.dto
+package lv.tti.airdock.dto
 
 import java.util.*
 

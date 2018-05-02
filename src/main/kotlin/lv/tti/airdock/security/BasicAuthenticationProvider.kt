@@ -1,6 +1,6 @@
 package lv.tti.airdock.security
 
-import lv.tti.airdock.core.database.CredentialsRepository
+import lv.tti.airdock.core.services.SessionService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -10,17 +10,21 @@ import org.springframework.stereotype.Component
 @Component
 class BasicAuthenticationProvider : AuthenticationProvider{
 
-    @Autowired lateinit var credentialsRepository: CredentialsRepository
+    @Autowired lateinit var sessionService: SessionService
 
     override fun authenticate(authentication: Authentication): Authentication? {
 
         val suppliedLogin = authentication.name.toUpperCase()
         val suppliedPassword = authentication.credentials.toString()
 
-        val userCredentials = credentialsRepository.findByLogin(suppliedLogin)
+        val userCredentials = sessionService.getCredentialsFor(suppliedLogin, suppliedPassword)
 
-        if (userCredentials.isPresent && userCredentials.get().password == suppliedPassword) {
-                return UsernamePasswordAuthenticationToken(suppliedLogin, suppliedPassword, emptyList())
+        if (userCredentials.isPresent) {
+                return CustomAuthenticationToken(
+                        login = suppliedLogin,
+                        password = suppliedPassword,
+                        authorities = emptyList(),
+                        credentials = userCredentials.get())
         }
         return null
     }

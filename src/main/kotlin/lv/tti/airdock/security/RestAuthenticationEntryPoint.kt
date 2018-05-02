@@ -15,9 +15,7 @@ class RestAuthenticationEntryPoint : BasicAuthenticationEntryPoint() {
             response: HttpServletResponse,
             authException: AuthenticationException
     ) {
-        response.addHeader("WWW-Authenticate", "Basic realm=\"${ realmName }\"");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//        response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
     }
 
     override fun afterPropertiesSet() {
