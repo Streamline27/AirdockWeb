@@ -20,9 +20,9 @@ app.controller('EditController', function($scope, $http, $routeParams) {
 		console.log(task);
 		$scope.task = {
 			title: task.title,
-			assignee: "" + task.user.id,
-			from: new Date(task.start),
-			to: new Date(task.end),
+``			assignee: "" + (task.user ? task.user.id : ""),
+			from: task.start ? new Date(task.start) : null,
+			to: task.end ? new Date(task.end) : null,
 			description: task.description
 		};
 		console.log($scope.task);

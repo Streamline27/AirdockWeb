@@ -13,4 +13,7 @@ app.controller('TaskListController', function($scope, $http, $location) {
 		})
 	}
 
+	$scope.parseDate = function(date) {
+		return date ? new Date(date).toString() : 'empty'
+	}
 });
