@@ -1,11 +1,23 @@
-<div class="panel-group">
-	<div ng-repeat="task in tasks" class="panel panel-default">
-		<div class="panel-body">
-			<span class="col-md-10">
-				{{task.title}} from: {{task.start || 'empty'}}-{{task.end || 'empty'}} assigned to: {{task.user.name || 'none'}}
-			</span>
-			<button type="button" class="btn btn-primary col-md-1">Edit</button>
-			<button type="button" class="btn btn-danger col-md-1">Delete</button>
+
+<top-navigation></top-navigation>
+
+<div class="main row">
+	<side-menu class="col-md-2"></side-menu>
+
+	<div class="content col-md-6">
+
+		<div class="panel-group">
+			<div ng-repeat="task in tasks" class="panel panel-default">
+				<div class="panel-body">
+					<span class="col-md-10">
+						{{task.title}} from: {{task.start || 'empty'}}-{{task.end || 'empty'}} assigned to: {{task.user.name || 'none'}}
+					</span>
+					<button type="button" class="btn btn-primary col-md-1">Edit</button>
+					<button type="button" class="btn btn-danger col-md-1">Delete</button>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
+
+	</div> <!-- End content! -->
+
+</div> <!-- End main! -->
