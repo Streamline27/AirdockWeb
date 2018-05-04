@@ -8,10 +8,10 @@ function AuthService($http, $cookieStore, $rootScope) {
 
     service.GetUserCredentials = GetUserCredentials;
     service.Login = Login;
-    service.Logout = Logout;
+    service.Logout = logout;
     service.isLoggedIn = isLoggedIn;
     service.OnAuthenticationStatusChanged = OnAuthenticationStatusChanged;
-    service.LogInFromCookies = LogInFromCookies;
+    service.loginFromCookies = loginFromCookies;
     service.ClearCookies = ClearCookies;
 
     return service;
@@ -27,7 +27,7 @@ function AuthService($http, $cookieStore, $rootScope) {
 
             $rootScope.userCredentials = user;
 
-            // $cookieStore.put('userCredentials', $rootScope.userCredentials); // save credentials in cookies
+            $cookieStore.put('userCredentials', $rootScope.userCredentials); // save credentials in cookies
             $http.defaults.headers.common['Authorization'] = "Basic "+ btoa(username + ":" + password); // headers for every
 
             onSuccess && onSuccess()
@@ -47,14 +47,14 @@ function AuthService($http, $cookieStore, $rootScope) {
 
     }
 
-    function Logout() {
+    function logout() {
 
         ClearCookies();
 
         $http({
             method: 'POST',
             url: 'api/user/logout'
-        }).success(function(){}).error(function(){});
+        }).then(function(){}, function(){});
     }
 
     function ClearCookies(){
@@ -79,17 +79,23 @@ function AuthService($http, $cookieStore, $rootScope) {
         $rootScope.$watch('userCredentials', callback);
     }
 
-    function LogInFromCookies(){
+    /**
+     * @return {boolean}
+     */
+    function loginFromCookies(){
         userCredentials = $cookieStore.get('userCredentials');
 
-        if(undefined == userCredentials) return;
+        if(undefined == userCredentials) return false;
 
         var hasFields = Object.keys(userCredentials).length !=0;
 
         if (hasFields) {
             var username = userCredentials.username;
             var password = userCredentials.password;
-            Login(username, password)
+            Login(username, password);
+
+            return true
         }
+        return false
     }
 }

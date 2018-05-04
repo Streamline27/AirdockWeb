@@ -1,21 +1,36 @@
-<form>
-    <div class="form-group">
-        <label for="loginInput">Username:</label>
-        <input type="text"
-               class="form-control"
-               id="loginInput"
-               placeholder="Enter username"
-               ng-model="user.username">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <h2 align="center">Airdock console</h2>
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="loginInput">Username:</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="loginInput"
+                                   placeholder="Enter username"
+                                   ng-model="user.username">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword">Password:</label>
+                            <input type="password"
+                                   class="form-control"
+                                   id="exampleInputPassword"
+                                   placeholder="Password"
+                                   ng-model="user.password">
+                        </div>
+                        <button type="submit"
+                                class="btn btn-primary"
+                                ng-click="login()">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword">Password:</label>
-        <input type="password"
-               class="form-control"
-               id="exampleInputPassword"
-               placeholder="Password"
-               ng-model="user.password">
-    </div>
-    <button type="submit"
-            class="btn btn-primary"
-            ng-click="login()">Submit</button>
-</form>
+</div>
+

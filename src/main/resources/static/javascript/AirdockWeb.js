@@ -22,9 +22,12 @@ app.config(function($routeProvider){
 });
 
 app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $location, authService) {
+
+        var canLogin = authService.loginFromCookies();
+
         $rootScope.$on('$routeChangeStart', function (event) {
 
-            if (!authService.isLoggedIn() && $location.path() !== '/login') {
+            if (!authService.isLoggedIn() && $location.path() !== '/login' && !canLogin) {
                 console.log('DENY : Redirecting to Login');
                 event.preventDefault();
                 $location.path('/login');
@@ -33,4 +36,5 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
                 console.log('ALLOW');
             }
         });
+
     }]);

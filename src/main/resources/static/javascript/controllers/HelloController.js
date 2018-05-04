@@ -1,7 +1,8 @@
 
-app.controller('HelloController', ['$scope',
-    function($scope){
+app.controller('HelloController', ['$scope', 'AuthService',
+function($scope, authService){
 
-        $scope.message = "Hello";
 
-    }]);
+
+
+}]);
