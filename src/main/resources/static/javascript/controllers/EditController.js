@@ -9,18 +9,12 @@ app.controller('EditController', function($scope, $http, $routeParams) {
 	}
 	var id = $routeParams.taskId;
 
-	$scope.assignees = [];
-	$http.get("/api/users/workers").then(function(response) {
-		$scope.assignees = response.data;
-		console.log($scope.assignees);
-	});
-
 	$http.get("/api/tasks/" + id).then(function(response) {
 		var task = response.data;
 		console.log(task);
 		$scope.task = {
 			title: task.title,
-``			assignee: "" + (task.user ? task.user.id : ""),
+			assignee: "" + (task.user ? task.user.id : ""),
 			from: task.start ? new Date(task.start) : null,
 			to: task.end ? new Date(task.end) : null,
 			description: task.description
