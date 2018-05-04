@@ -46,4 +46,9 @@ class TaskController {
 				)
 		)
 	}
+
+	@DeleteMapping("/{id}")
+	fun updateTask(@PathVariable id: Long) {
+		taskService.deleteTask(id)
+	}
 }

@@ -15,4 +15,6 @@ class TaskService {
     fun getAllTasks(): List<Task> = taskDao.findAll()
 
     fun saveTask(task: Task) = taskDao.save(task)
+
+    fun deleteTask(id: Long) = taskDao.deleteById(id)
 }
