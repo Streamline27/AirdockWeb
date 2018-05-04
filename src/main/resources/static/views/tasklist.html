@@ -1,12 +1,19 @@
-<div class="panel-group">
-	<div ng-repeat="task in tasks" class="panel panel-default">
-		<div class="panel-heading">{{task.title}}</div>
-		<div class="panel-body">
-			<div class="col-md-10">
-				from: {{parseDate(task.start)}} to: {{parseDate(task.end)}} assigned to: {{task.user.name || 'none'}}
+<top-navigation></top-navigation>
+<div class="main row">
+	<side-menu class="col-md-2"></side-menu>
+	<div class="content col-md-6">
+
+		<div class="panel-group">
+			<div ng-repeat="task in tasks" class="panel panel-default">
+				<div class="panel-heading">{{task.title}}</div>
+				<div class="panel-body">
+					<div class="col-md-10">
+						from: {{parseDate(task.start)}} to: {{parseDate(task.end)}} assigned to: {{task.user.name || 'none'}}
+					</div>
+					<button ng-click="redirectToEdit(task.id)" type="button" class="btn btn-primary col-md-1">Edit</button>
+					<button ng-click="deleteTask(task.id)" type="button" class="btn btn-danger col-md-1">Delete</button>
+				</div>
 			</div>
-			<button ng-click="redirectToEdit(task.id)" type="button" class="btn btn-primary col-md-1">Edit</button>
-			<button ng-click="deleteTask(task.id)" type="button" class="btn btn-danger col-md-1">Delete</button>
 		</div>
-	</div>
-</div>
+	</div> <!-- End content! -->
+</div> <!-- End main! -->

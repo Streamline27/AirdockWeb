@@ -31,6 +31,8 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .httpBasic()
                 .realmName("Airdock")
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
+            .and()
+                .logout().logoutUrl("/api/user/logout");
     }
 
 
