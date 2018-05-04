@@ -11,7 +11,7 @@ app.controller('CreateController', function($scope, $http) {
 	$scope.assignees = [];
 
 	$scope.submit = function() {
-		$http.post("/api/tasks", $scope.task)
+		$http.post("/api/tasks/task", $scope.task)
 	}
 
 	$http.get("/api/users/workers").then(function(response) {

@@ -6,8 +6,7 @@ app.config(function($routeProvider){
         .when('/', {
         	controller: 'HelloController',
             templateUrl: 'views/hello.html'
-        })
-        .when('/login', {
+        }).when('/login', {
             controller: 'LoginController',
             templateUrl: 'views/login.html'
         }).when('/create', {
@@ -16,6 +15,9 @@ app.config(function($routeProvider){
         }).when('/list', {
 			controller: 'TaskListController',
 			templateUrl: 'views/tasklist.html'
+		}).when('/edit/:taskId', {
+			controller: 'EditController',
+			templateUrl: 'views/edit.html'
 		});
 });
 

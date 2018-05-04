@@ -20,7 +20,7 @@ class TaskController {
 	@GetMapping()
     fun getTasks() = taskService.getAllTasks()
 
-    @PostMapping()
+    @PostMapping("/task")
 	fun saveTask(@RequestBody task: TaskDto) {
 		taskService.saveTask(
 				Task(
@@ -29,6 +29,20 @@ class TaskController {
 					start = task.from,
 					end = task.to,
 					user = if (task.assignee != null) userService.getById(task.assignee!!) else null
+				)
+		)
+	}
+
+	@PutMapping("/{id}")
+	fun updateTask(@PathVariable id: Long, @RequestBody task: TaskDto) {
+		taskService.saveTask(
+				Task(
+						id = id,
+						title = task.title,
+						description = task.description,
+						start = task.from,
+						end = task.to,
+						user = if (task.assignee != null) userService.getById(task.assignee!!) else null
 				)
 		)
 	}

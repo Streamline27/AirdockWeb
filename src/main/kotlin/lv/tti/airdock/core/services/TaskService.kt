@@ -12,7 +12,7 @@ class TaskService {
 
     fun getTaskById(id : Long) = taskDao.findById(id).get()
 
-    fun getAllTasks() = taskDao.findAll()
+    fun getAllTasks(): List<Task> = taskDao.findAll()
 
     fun saveTask(task: Task) = taskDao.save(task)
 }

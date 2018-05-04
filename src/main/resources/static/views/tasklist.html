@@ -4,7 +4,7 @@
 			<span class="col-md-10">
 				{{task.title}} from: {{task.start || 'empty'}}-{{task.end || 'empty'}} assigned to: {{task.user.name || 'none'}}
 			</span>
-			<button type="button" class="btn btn-primary col-md-1">Edit</button>
+			<button ng-click="redirectToEdit(task.id)" type="button" class="btn btn-primary col-md-1">Edit</button>
 			<button type="button" class="btn btn-danger col-md-1">Delete</button>
 		</div>
 	</div>
