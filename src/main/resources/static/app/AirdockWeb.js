@@ -5,22 +5,22 @@ app.config(function($routeProvider){
     $routeProvider
         .when('/', {
         	controller: 'HelloController',
-            templateUrl: 'views/hello.html'
+            templateUrl: 'app/views/hello.html'
         }).when('/login', {
             controller: 'LoginController',
-            templateUrl: 'views/login.html'
+            templateUrl: 'app/views/login.html'
         }).when('/create', {
             controller: 'CreateController',
-            templateUrl: 'views/create.html'
+            templateUrl: 'app/views/create.html'
         }).when('/list', {
 			controller: 'TaskListController',
-			templateUrl: 'views/tasklist.html'
+			templateUrl: 'app/views/tasklist.html'
         }).when('/users', {
             controller: 'UsersController',
-            templateUrl: 'views/users.html'
+            templateUrl: 'app/views/users.html'
 		}).when('/edit/:taskId', {
 			controller: 'EditController',
-			templateUrl: 'views/edit.html'
+			templateUrl: 'app/views/edit.html'
 		});
 });
 

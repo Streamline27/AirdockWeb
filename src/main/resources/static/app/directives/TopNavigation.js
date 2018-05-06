@@ -2,7 +2,7 @@ app.directive('topNavigation', ['$route', 'AuthService', function($route, authSe
     return{
         restrict: 'E',
         scope: {},
-        templateUrl: 'javascript/directives/TopNavigation.html',
+        templateUrl: 'app/directives/TopNavigation.html',
         link: function($scope, element, attr){
             $scope.logout = function() {
                 authService.Logout()

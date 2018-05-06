@@ -5,7 +5,7 @@ app.directive('taskForm', ['$route', '$http', function($route, $http){
         	task: '=',
         	onSubmit: '&'
         },
-        templateUrl: 'javascript/directives/TaskForm.html',
+        templateUrl: 'app/directives/TaskForm.html',
         link: function($scope, element, attr){
 			$scope.assignees = [];
 			$http.get("/api/users/workers").then(function(response) {
