@@ -15,6 +15,9 @@ app.config(function($routeProvider){
         }).when('/list', {
 			controller: 'TaskListController',
 			templateUrl: 'views/tasklist.html'
+        }).when('/users', {
+            controller: 'UsersController',
+            templateUrl: 'views/users.html'
 		}).when('/edit/:taskId', {
 			controller: 'EditController',
 			templateUrl: 'views/edit.html'
