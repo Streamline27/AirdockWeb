@@ -34,7 +34,7 @@ function AuthService($http, $cookieStore, $rootScope) {
         };
 
         var errorCallback = function (data) {
-            if (IsLoggedIn()) ClearCookies();
+            if (isLoggedIn()) ClearCookies();
             onError && onError();
         };
 
