@@ -65,6 +65,7 @@ dependencies {
 // security
 //    compile 'org.springframework.security:spring-security-web:5.0.4.RELEASE'
     compile("org.springframework.boot:spring-boot-starter-security")
+    compile("io.jsonwebtoken:jjwt:0.7.0")
 //	logger
     compile 'io.github.microutils:kotlin-logging:1.4.9'
 

@@ -47,14 +47,14 @@ function AuthService($http, $cookieStore, $rootScope) {
 
     }
 
-    function logout() {
+    function logout(onSuccess) {
 
         ClearCookies();
 
         $http({
             method: 'POST',
             url: 'api/user/logout'
-        }).then(function(){}, function(){});
+        }).then(onSuccess, onSuccess);
     }
 
     function ClearCookies(){
