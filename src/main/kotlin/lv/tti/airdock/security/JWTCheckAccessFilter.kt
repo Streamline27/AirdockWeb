@@ -11,7 +11,10 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class JWTAuthorizationFilter(authManager : AuthenticationManager) : BasicAuthenticationFilter(authManager) {
+/**
+ * Authorization
+ */
+class JWTCheckAccessFilter(authManager : AuthenticationManager) : BasicAuthenticationFilter(authManager) {
 
     override fun doFilterInternal(request: HttpServletRequest,
                                   response: HttpServletResponse,
@@ -40,6 +43,10 @@ class JWTAuthorizationFilter(authManager : AuthenticationManager) : BasicAuthent
                     .subject
 
             if (username != null) {
+                /** TODO: https://auth0.com/blog/implementing-jwt-authentication-on-spring-boot/
+                 *
+                 *  Replace this with Custom token
+                 */
                 return UsernamePasswordAuthenticationToken(username, null, mutableListOf())
             }
             return null

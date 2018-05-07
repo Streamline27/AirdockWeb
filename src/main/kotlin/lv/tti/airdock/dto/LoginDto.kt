@@ -1,4 +1,4 @@
-package lv.tti.airdock.rest
+package lv.tti.airdock.dto
 
 class LoginDto(
         var login : String = "",

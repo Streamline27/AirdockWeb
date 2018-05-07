@@ -1,66 +1,77 @@
 
 app.factory('AuthService', AuthService);
 
-function AuthService($http, $cookieStore, $rootScope) {
+function AuthService($http, $cookieStore, $rootScope, jwtHelper) {
     AuthService.$inject = ['$http', '$cookieStore', '$rootScope'];
     $rootScope.userCredentials = {};
     var service = {};
 
     service.GetUserCredentials = GetUserCredentials;
     service.Login = Login;
-    service.Logout = logout;
+    service.logout = logout;
     service.isLoggedIn = isLoggedIn;
     service.OnAuthenticationStatusChanged = OnAuthenticationStatusChanged;
     service.loginFromCookies = loginFromCookies;
-    service.ClearCookies = ClearCookies;
+    service.clearCookies = logout;
+    service.getToken = getToken;
+    service.tokenIsExpired = tokenIsExpired;
 
     return service;
 
     function Login(username, password, onSuccess, onError) {
 
-        var successCallback = function (data) {
-            user = {};
-            user.username= username;
-            user.password = password;
-            user.firstName = data.firstName;
-            user.lastName = data.lastName;
+        var successCallback = function (response) {
 
-            $rootScope.userCredentials = user;
+            var token = response.headers("Authorization");
 
-            $cookieStore.put('userCredentials', $rootScope.userCredentials); // save credentials in cookies
-            $http.defaults.headers.common['Authorization'] = "Basic "+ btoa(username + ":" + password); // headers for every
+            if (token) {
+                $http.defaults.headers.common['Authorization'] = token; // headers for every
 
-            onSuccess && onSuccess()
+                var tokenPayload = jwtHelper.decodeToken(token);
+
+                user = {};
+                user.username = tokenPayload.username;
+                user.role = tokenPayload.role;
+                user.token = token;
+
+                $rootScope.userCredentials = user;
+                $cookieStore.put('userCredentials', $rootScope.userCredentials); // save credentials in cookies
+
+                onSuccess && onSuccess()
+            }
+            else {
+                logout();
+                onError && onError();
+            }
         };
 
         var errorCallback = function (data) {
-            if (isLoggedIn()) ClearCookies();
+            logout();
             onError && onError();
         };
 
-        $http({
-            method: 'POST',
-            url: 'api/users/login',
-            headers: { authorization : "Basic "+ btoa(username + ":" + password) }
+        $http.post('/login', { login : username, password : password })
+            .then(successCallback, errorCallback);
+    }
 
-        }).then(successCallback, errorCallback);
+    function getToken() {
+        if ($rootScope.userCredentials && $rootScope.userCredentials.token) {
+            return $rootScope.userCredentials.token
+        }
+        return null
+    }
 
+    function tokenIsExpired() {
+        jwtHelper.isTokenExpired(getToken())
     }
 
     function logout(onSuccess) {
 
-        ClearCookies();
-
-        $http({
-            method: 'POST',
-            url: 'api/user/logout'
-        }).then(onSuccess, onSuccess);
-    }
-
-    function ClearCookies(){
         $rootScope.userCredentials = undefined; // Clear globals
         $cookieStore.remove('userCredentials'); // Clear cookies
         delete $http.defaults.headers.common['Authorization']; //Clear headers
+
+        onSuccess && onSuccess()
     }
 
     function GetUserCredentials(){
@@ -79,9 +90,6 @@ function AuthService($http, $cookieStore, $rootScope) {
         $rootScope.$watch('userCredentials', callback);
     }
 
-    /**
-     * @return {boolean}
-     */
     function loginFromCookies(){
         userCredentials = $cookieStore.get('userCredentials');
 
@@ -98,4 +106,5 @@ function AuthService($http, $cookieStore, $rootScope) {
         }
         return false
     }
+
 }

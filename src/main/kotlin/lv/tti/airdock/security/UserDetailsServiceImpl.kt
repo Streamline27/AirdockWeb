@@ -2,7 +2,6 @@ package lv.tti.airdock.security
 
 import lv.tti.airdock.core.database.CredentialsRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
@@ -15,9 +14,15 @@ class UserDetailsServiceImpl : UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails {
 
-        val credentials = credentialsRepository.findByLogin(username.toUpperCase())
-        if (credentials.isPresent) {
-            return User(credentials.get().login, credentials.get().password, emptyList())
+        val credentialsOpt = credentialsRepository.findByLogin(username.toUpperCase())
+
+        if (credentialsOpt.isPresent) {
+
+            val credentials = credentialsOpt.get()
+            val login = credentials.login
+            val password = credentials.password
+
+            return AppUser(login, password, credentials, emptyList())
         }
         throw UsernameNotFoundException(username)
     }
