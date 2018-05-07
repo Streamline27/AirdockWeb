@@ -1,24 +1,28 @@
 package lv.tti.airdock.config
 
-import lv.tti.airdock.security.BasicAuthenticationProvider
-import lv.tti.airdock.security.RestAuthenticationEntryPoint
+import lv.tti.airdock.security.*
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.crypto.password.NoOpPasswordEncoder
 
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+
 
 @Configuration
 @EnableWebSecurity
 @Profile(value = ["dev"])
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
-    @Autowired lateinit var restAuthenticationEntryPoint : RestAuthenticationEntryPoint
-    @Autowired lateinit var authenticationProvider: BasicAuthenticationProvider
+    @Autowired lateinit var userDetailsServiceImpl: UserDetailsServiceImpl
 
     override fun configure(http: HttpSecurity) {
         http
@@ -28,17 +32,25 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .antMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
             .and()
-                .httpBasic()
-                .realmName("Airdock")
-                .authenticationEntryPoint(restAuthenticationEntryPoint)
-            .and()
-                .logout().logoutUrl("/api/user/logout");
+                .addFilter(JWTCheckPasswordFilter(authenticationManager()))
+                .addFilter(JWTCheckAccessFilter(authenticationManager()))
+                // this disables session creation on Spring Security
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
     }
 
 
     override fun configure(auth: AuthenticationManagerBuilder) {
-        auth.authenticationProvider(authenticationProvider)
+        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(NoOpPasswordEncoder.getInstance())
     }
 
+    /**
+     * Enable requests from all domains. Will be useful when deploying
+     */
+    @Bean
+    fun corsConfigurationSource() : CorsConfigurationSource {
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**", CorsConfiguration().applyPermitDefaultValues())
+        return source
+    }
 
 }
