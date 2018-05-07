@@ -14,19 +14,19 @@
 	<div class="form-group row">
 		<label for="fromInput" class="col-sm-1 col-form-label">From</label>
 		<span class='col-sm-5 input-group'>
-					<input ng-model='task.from' type='date' class="form-control" id='fromInput'/>
-				</span>
+			<input ng-model='task.from' type='date' class="form-control" id='fromInput'/>
+		</span>
 		<label for="toInput" class="col-sm-1 col-form-label">To</label>
 		<span class='col-sm-5 input-group'>
-					<input ng-model='task.to' type='date' class="form-control" id='toInput'/>
-				</span>
+			<input ng-model='task.to' type='date' class="form-control" id='toInput'/>
+		</span>
 	</div>
 	<div class="form-group row">
 		<label for="assigneeInput" class="col-sm-1 col-form-label">Assignee</label>
 		<div class="col-sm-10">
-			<select ng-model='task.assignee' class="form-control" id="assigneeInput">
-				<option selected="selected" value={{null}}>Empty</option>
-				<option ng-repeat="assignee in assignees" value={{assignee.id}}>{{assignee.name}}</option>
+			<select ng-options="assignee.id as assignee.name for assignee in assignees"
+					ng-model='task.assignee' ng-init="task.assignee = ''"
+					class="form-control" id="assigneeInput">
 			</select>
 		</div>
 	</div>

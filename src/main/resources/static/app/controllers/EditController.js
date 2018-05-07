@@ -24,7 +24,7 @@ app.controller('EditController', function($scope, $http, $routeParams) {
 
 
 	$scope.submit = function() {
-		$http.put("/api/tasks/" + id, $scope.task)
+		$http.put("/api/tasks/" + id, $scope.task);
 	};
 
 });

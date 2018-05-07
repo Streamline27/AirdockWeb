@@ -8,6 +8,6 @@ app.controller('CreateController', function($scope, $http) {
 
 	}
 	$scope.submit = function() {
-		$http.post("/api/tasks/task", $scope.task)
+		$http.post("/api/tasks/task", $scope.task);
 	}
 });

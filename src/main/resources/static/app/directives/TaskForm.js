@@ -7,9 +7,9 @@ app.directive('taskForm', ['$route', '$http', function($route, $http){
         },
         templateUrl: 'app/directives/TaskForm.html',
         link: function($scope, element, attr){
-			$scope.assignees = [];
+			$scope.assignees = [{id: '', name: 'None'}];
 			$http.get("/api/users/workers").then(function(response) {
-				$scope.assignees = response.data;
+				$scope.assignees = [{id: '', name: 'None'}, ...response.data];
 			});
         }
     }

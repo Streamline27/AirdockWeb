@@ -1,5 +1,5 @@
-app.controller('TaskListController', function($scope, $http, $location) {
-	$http.get("/api/tasks").then(function(response) {
+app.controller('TaskListController', function($scope, $http, $location, $httpParamSerializer) {
+	$http.get("/api/tasks/search").then(function(response) {
 		$scope.tasks = response.data;
 	})
 
@@ -15,5 +15,12 @@ app.controller('TaskListController', function($scope, $http, $location) {
 
 	$scope.parseDate = function(date) {
 		return date ? new Date(date).toString() : 'empty'
+	}
+
+	$scope.search = function(filter) {
+		var filterParams = $httpParamSerializer(filter);
+		$http.get("/api/tasks/search?" + filterParams).then(function(response) {
+			$scope.tasks = response.data;
+		})
 	}
 });

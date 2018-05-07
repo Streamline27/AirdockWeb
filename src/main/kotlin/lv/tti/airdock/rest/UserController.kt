@@ -39,6 +39,7 @@ class UserController {
 	fun register(@RequestBody @Valid userDto : RegistrationDto) : UserDto = registrationService.registerWorker(userDto).toUserDto()
 
 	fun User.toUserDto() = UserDto(
+			id = this.id,
 			name = this.name
 	)
 }

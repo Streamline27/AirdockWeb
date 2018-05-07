@@ -5,6 +5,7 @@ import lv.tti.airdock.dto.TaskDto
 import lv.tti.airdock.core.services.TaskService
 import lv.tti.airdock.core.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -19,6 +20,13 @@ class TaskController {
 
 	@GetMapping()
     fun getTasks() = taskService.getAllTasks()
+
+	@GetMapping("/search")
+	fun searchTasks(@RequestParam filter: Map<String,String>?): List<Task> {
+		if (filter == null || filter.isEmpty())
+			return taskService.getAllTasks()
+		return taskService.searchTasks(filter)
+	}
 
     @PostMapping("/task")
 	fun saveTask(@RequestBody task: TaskDto) {
