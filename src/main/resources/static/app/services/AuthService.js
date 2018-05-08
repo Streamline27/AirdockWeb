@@ -62,7 +62,7 @@ function AuthService($http, $cookieStore, $rootScope, jwtHelper) {
     }
 
     function tokenIsExpired() {
-        jwtHelper.isTokenExpired(getToken())
+        return jwtHelper.isTokenExpired(getToken())
     }
 
     function logout(onSuccess) {

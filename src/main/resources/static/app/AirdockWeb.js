@@ -39,7 +39,7 @@ app.config(['$routeProvider', '$httpProvider', 'jwtOptionsProvider', function($r
 
 }]);
 
-app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $location, authService) {
+app.run(['$rootScope', '$location', 'AuthService', '$interval', function ($rootScope, $location, authService, $interval) {
 
     var canLogin = authService.loginFromCookies();
 
@@ -57,6 +57,12 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
         }
         else {
             console.log('ALLOW');
+        }
+
+        if (authService.isLoggedIn() && authService.tokenIsExpired()) {
+            authService.logout(function () {
+                $location.path('/login');
+            })
         }
     });
 
