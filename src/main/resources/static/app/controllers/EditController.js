@@ -1,4 +1,4 @@
-app.controller('EditController', function($scope, $http, $routeParams) {
+app.controller('EditController', function($scope, $http, $stateParams) {
 	$scope.task = {
 		title: '',
 		assignee: null,
@@ -6,8 +6,9 @@ app.controller('EditController', function($scope, $http, $routeParams) {
 		to: '',
 		description: ''
 
-	}
-	var id = $routeParams.taskId;
+	};
+
+	var id = $stateParams.taskId;
 
 	$http.get("/api/tasks/" + id).then(function(response) {
 		var task = response.data;

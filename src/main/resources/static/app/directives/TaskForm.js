@@ -1,4 +1,4 @@
-app.directive('taskForm', ['$route', '$http', function($route, $http){
+app.directive('taskForm', ['$http', function($http){
     return{
         restrict: 'E',
         scope: {

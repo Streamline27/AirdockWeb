@@ -1,69 +1,97 @@
 
-var app = angular.module('AirdockWeb', ['ngRoute', 'ngCookies', 'angular-jwt']);
+var app = angular.module('AirdockWeb', ['ui.router', 'ngCookies', 'angular-jwt']);
 
-app.config(['$routeProvider', '$httpProvider', 'jwtOptionsProvider', function($routeProvider, $httpProvider, jwtOptionsProvider){
+app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'jwtOptionsProvider', function( $stateProvider, $urlRouterProvider, $httpProvider, jwtOptionsProvider){
 
-    $routeProvider
-        .when('/', {
-        	controller: 'HelloController',
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+        .state('hello', {
+            url: '/',
+            controller: 'HelloController',
             templateUrl: 'app/views/hello.html',
-            data: { requiresLogin: true }
-        }).when('/create', {
-            controller: 'CreateController',
-            templateUrl: 'app/views/create.html',
-            data: { requiresLogin: true }
-        }).when('/list', {
-			controller: 'TaskListController',
-			templateUrl: 'app/views/tasklist.html',
-            data: { requiresLogin: true }
-        }).when('/users', {
+            data: {
+                requiresLogin: true
+            }
+        })
+        .state('tasks', {
+            url: '/tasks',
+            controller: 'TaskListController',
+            templateUrl: 'app/views/tasklist.html',
+            data: {
+                requiresLogin: true
+            }
+        })
+        .state('users', {
+            url: '/users',
             controller: 'UsersController',
             templateUrl: 'app/views/users.html',
-            data: { requiresLogin: true }
-		}).when('/edit/:taskId', {
-			controller: 'EditController',
-			templateUrl: 'app/views/edit.html',
-            data: { requiresLogin: true }
-		}).when('/login', {
+            data: {
+                requiresLogin: true
+            }
+        })
+        .state('create', {
+            url: '/task/create',
+            controller: 'CreateController',
+            templateUrl: 'app/views/create.html',
+            data: {
+                requiresLogin: true
+            }
+        })
+        .state('edit', {
+            url: '/task/{taskId}/edit/',
+            controller: 'EditController',
+            templateUrl: 'app/views/edit.html',
+            data: {
+                requiresLogin: true
+            }
+        })
+        .state('login', {
+            url: '/login',
             controller: 'LoginController',
-            templateUrl: 'app/views/login.html'
+            templateUrl: 'app/views/login.html',
+            data: {
+                requiresLogin: false
+            }
         });
 
 
-    jwtOptionsProvider.config({
 
-        tokenGetter: ['AuthService', function (authService) { return authService.getToken() }],
-        unauthenticatedRedirectPath: '/login'
+    jwtOptionsProvider.config({
+        tokenGetter: ['options', 'AuthService', function (options, authService) {
+            // Skip authentication for any requests ending in .html
+            if (options == null && options.url.substr(options.url.length - 5) === '.html') {
+                return null;
+            }
+            return authService.getToken()
+        }]
     });
     $httpProvider.interceptors.push('jwtInterceptor');
+    $httpProvider.interceptors.push('accessDeniedInterceptor');
 
 }]);
 
-app.run(['$rootScope', '$location', 'AuthService', '$interval', function ($rootScope, $location, authService, $interval) {
+app.run(['$rootScope', '$state', '$transitions', 'AuthService', function ($rootScope, $state, $transitions, authService) {
 
-    var canLogin = authService.loginFromCookies();
-
-    if (canLogin && authService.tokenIsExpired()) {
-        authService.clearCookies();
-        canLogin = false
-    }
-
-    $rootScope.$on('$routeChangeStart', function (event) {
-
-        if (!authService.isLoggedIn() && $location.path() !== '/login' && !canLogin) {
-            console.log('DENY : Redirecting to Login');
-            event.preventDefault();
-            $location.path('/login');
-        }
-        else {
-            console.log('ALLOW');
-        }
-
-        if (authService.isLoggedIn() && authService.tokenIsExpired()) {
-            authService.logout(function () {
-                $location.path('/login');
-            })
+    $transitions.onStart({ to: '**' },function (trans) {
+        to = trans.$to();
+        if (to.data && to.data.requiresLogin) {
+            if (!authService.isLoggedIn()) {
+                return trans.router.stateService.target('login');
+            }
         }
     });
-
 }]);
+
+app.factory('accessDeniedInterceptor', function ($state, $q) {
+    return {
+        responseError: function (response) {
+            if(response.status === 403) {
+                $state.go('login');
+            }
+            else {
+                return $q.reject(response);
+            }
+        }
+    }
+})
