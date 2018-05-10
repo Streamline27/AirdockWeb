@@ -1,4 +1,4 @@
-app.directive('filter', ['$route', '$http', function($route, $http){
+app.directive('filter', ['$http', function($http){
     return{
         restrict: 'E',
         scope: {
