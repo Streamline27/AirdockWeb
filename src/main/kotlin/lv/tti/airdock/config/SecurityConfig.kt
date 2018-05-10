@@ -24,7 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 @Profile(value = ["dev"])
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
-    @Autowired lateinit var userDetailsServiceImpl: UserDetailsServiceImpl
+    @Autowired lateinit var userDetailsProvidingService: UserDetailsProvidingService
 
     override fun configure(http: HttpSecurity) {
         http
@@ -41,7 +41,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
 
     override fun configure(auth: AuthenticationManagerBuilder) {
-        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(NoOpPasswordEncoder.getInstance())
+        auth.userDetailsService(userDetailsProvidingService).passwordEncoder(NoOpPasswordEncoder.getInstance())
     }
 
     /**

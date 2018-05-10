@@ -4,6 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import lv.tti.airdock.dto.LoginDto
+import lv.tti.airdock.security.utilities.EXPIRATION_TIME
+import lv.tti.airdock.security.utilities.HEADER_STRING
+import lv.tti.airdock.security.utilities.SECRET
+import lv.tti.airdock.security.utilities.TOKEN_PREFIX
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
@@ -38,7 +42,7 @@ class JWTCheckPasswordFilter(var authManager: AuthenticationManager) : UsernameP
                                           chain: FilterChain?,
                                           authResult: Authentication) {
 
-        val credentials = (authResult.principal as AppUser).credentials
+        val credentials = (authResult.principal as lv.tti.airdock.security.UserDetailsImpl).credentials
 
         val token = Jwts.builder()
                 .setSubject((authResult.principal as UserDetails).username)
@@ -48,6 +52,6 @@ class JWTCheckPasswordFilter(var authManager: AuthenticationManager) : UsernameP
                 .claim("role", credentials.user.role)
                 .compact()
 
-        response.addHeader(HEADER_STRING, TOKEN_PREFIX+token)
+        response.addHeader(HEADER_STRING, TOKEN_PREFIX +token)
     }
 }

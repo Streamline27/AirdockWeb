@@ -7,8 +7,11 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Component
 
+/**
+ * Fetches user credentials that should be compared to those that are passed by url
+ */
 @Component
-class UserDetailsServiceImpl : UserDetailsService {
+class UserDetailsProvidingService : UserDetailsService {
 
     @Autowired lateinit var credentialsRepository: CredentialsRepository
 
@@ -22,7 +25,7 @@ class UserDetailsServiceImpl : UserDetailsService {
             val login = credentials.login
             val password = credentials.password
 
-            return AppUser(login, password, credentials, emptyList())
+            return UserDetailsImpl(login, password, credentials, emptyList())
         }
         throw UsernameNotFoundException(username)
     }
