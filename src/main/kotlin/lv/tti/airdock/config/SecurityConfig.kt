@@ -16,7 +16,9 @@ import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
-
+/**
+ * https://gist.github.com/zmts/802dc9c3510d79fd40f9dc38a12bccfc
+ */
 @Configuration
 @EnableWebSecurity
 @Profile(value = ["dev"])
