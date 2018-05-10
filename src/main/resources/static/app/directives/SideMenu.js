@@ -1,4 +1,4 @@
-app.directive('sideMenu', ['$route', function($route){
+app.directive('sideMenu', [function(){
     return{
         restrict: 'E',
         scope: {},

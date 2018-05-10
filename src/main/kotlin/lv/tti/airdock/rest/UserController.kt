@@ -23,18 +23,6 @@ class UserController {
 	@GetMapping("/workers")
 	fun getWorkers() : List<UserDto> = userService.getWorkers().map { it.toUserDto() }
 
-	@PostMapping("/login")
-	fun login() : ResponseEntity<UserDto> {
-		/* Active user is persisted in session in BasicAuthenticationProvider*/
-
-		val user = sessionService.getActiveUser()
-
-		if (user.isPresent) {
-			return ResponseEntity(user.get().toUserDto(), HttpStatus.OK)
-		}
-		return ResponseEntity(UserDto(), HttpStatus.BAD_REQUEST)
-	}
-
 	@PostMapping("worker/register")
 	fun register(@RequestBody @Valid userDto : RegistrationDto) : UserDto = registrationService.registerWorker(userDto).toUserDto()
 

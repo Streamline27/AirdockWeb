@@ -1,4 +1,4 @@
-app.directive('topNavigation', ['$route', 'AuthService', '$window', function($route, authService, $window){
+app.directive('topNavigation', ['AuthService', '$state', function(authService, $state){
     return{
         restrict: 'E',
         scope: {},
@@ -6,7 +6,9 @@ app.directive('topNavigation', ['$route', 'AuthService', '$window', function($ro
         link: function($scope, element, attr) {
 
             $scope.logout = function() {
-                authService.logout()
+                authService.logout(function () {
+                    $state.go('login');
+                })
             }
 
         }

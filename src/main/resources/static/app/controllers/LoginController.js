@@ -1,12 +1,12 @@
 
-app.controller('LoginController', ['$scope', 'AuthService', '$location',
-    function($scope, authService, $location){
+app.controller('LoginController', ['$scope', 'AuthService', '$state',
+    function($scope, authService, $state){
 
     var user = {};
 
     $scope.login = function() {
         onSuccess = function(){
-            $location.path('/')
+            $state.go('hello')
 
         };
         onError = function(){
