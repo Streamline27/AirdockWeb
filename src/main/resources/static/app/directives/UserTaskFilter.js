@@ -1,10 +1,10 @@
-app.directive('filter', ['$http', function($http){
+app.directive('userTaskFilter', ['$http', function($http){
     return{
         restrict: 'E',
         scope: {
         	onSearch: '&'
         },
-        templateUrl: 'app/directives/Filter.html',
+        templateUrl: 'app/directives/UserTaskFilter.html',
         link: function($scope, element, attr){
         	$scope.filter = {};
 			var baseFilter = Object.assign({}, $scope.filter);
