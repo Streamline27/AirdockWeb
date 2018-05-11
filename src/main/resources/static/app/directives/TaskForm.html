@@ -30,5 +30,14 @@
 			</select>
 		</div>
 	</div>
+	<div class="form-group row">
+		<label for="workOrderInput" class="col-sm-1 col-form-label">Work Order</label>
+		<div class="col-sm-10">
+			<select ng-options="workOrder.id as workOrder.title for workOrder in workOrders"
+					ng-model='task.workOrder' ng-init="task.workOrder = ''"
+					class="form-control" id="workOrderInput">
+			</select>
+		</div>
+	</div>
 	<button ng-click="onSubmit()" type="submit" class="btn btn-primary">Submit</button>
 </form>

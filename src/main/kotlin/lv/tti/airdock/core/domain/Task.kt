@@ -19,5 +19,9 @@ data class Task(
 
 		@ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id", referencedColumnName = "id")
-        var user: User? = null
+        var user: User? = null,
+
+		@ManyToOne(fetch = FetchType.LAZY)
+		@JoinColumn(name = "WORK_ORDER_ID", referencedColumnName = "id")
+		var workOrder: WorkOrder? = null
 )

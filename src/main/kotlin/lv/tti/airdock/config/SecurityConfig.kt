@@ -27,7 +27,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     @Autowired lateinit var userDetailsProvidingService: UserDetailsProvidingService
 
     override fun configure(http: HttpSecurity) {
-        http
+        http.headers().frameOptions().disable().and()
             .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/**").authenticated()

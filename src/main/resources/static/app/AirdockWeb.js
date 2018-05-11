@@ -17,11 +17,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'jwtOptions
         .state('tasks', {
             url: '/tasks',
             controller: 'TaskListController',
-            templateUrl: 'app/views/tasklist.html',
+            templateUrl: 'app/views/TaskList.html',
             data: {
                 requiresLogin: true
             }
         })
+        .state('workorders', {
+			url: '/workorders',
+			controller: 'WorkOrderListController',
+			templateUrl: 'app/views/WorkOrderList.html',
+			data: {
+				requiresLogin: true
+			}
+		})
         .state('users', {
             url: '/users',
             controller: 'UsersController',
@@ -30,22 +38,38 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'jwtOptions
                 requiresLogin: true
             }
         })
-        .state('create', {
+        .state('create/task', {
             url: '/task/create',
-            controller: 'CreateController',
-            templateUrl: 'app/views/create.html',
+            controller: 'CreateTaskController',
+            templateUrl: 'app/views/CreateTask.html',
             data: {
                 requiresLogin: true
             }
         })
-        .state('edit', {
+        .state('edit/task', {
             url: '/task/{taskId}/edit/',
-            controller: 'EditController',
-            templateUrl: 'app/views/edit.html',
+            controller: 'EditTaskController',
+            templateUrl: 'app/views/EditTask.html',
             data: {
                 requiresLogin: true
             }
         })
+        .state('create/workorder', {
+			url: '/workorder/create',
+			controller: 'CreateWorkOrderController',
+			templateUrl: 'app/views/CreateWorkOrder.html',
+			data: {
+				requiresLogin: true
+			}
+		})
+		.state('edit/workorder', {
+			url: '/workorder/{workOrderId}/edit/',
+			controller: 'EditWorkOrderController',
+			templateUrl: 'app/views/EditWorkOrder.html',
+			data: {
+				requiresLogin: true
+			}
+		})
         .state('login', {
             url: '/login',
             controller: 'LoginController',

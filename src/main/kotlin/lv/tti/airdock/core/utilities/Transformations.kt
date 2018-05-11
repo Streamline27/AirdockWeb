@@ -1,5 +1,12 @@
 package lv.tti.airdock.core.utilities
 
+import lv.tti.airdock.core.domain.Task
+import lv.tti.airdock.core.domain.User
+import lv.tti.airdock.core.domain.WorkOrder
+import lv.tti.airdock.dto.LargeTaskDto
+import lv.tti.airdock.dto.UserDto
+import lv.tti.airdock.dto.WorkOrderDto
+
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
  *  Transformations from dto to domain objects
@@ -9,3 +16,28 @@ package lv.tti.airdock.core.utilities
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
  *  Transformations from domain to dto objects
  */
+
+fun Task.toLargeDto() =	LargeTaskDto(
+	id = this.id,
+	title = this.title,
+	description = this.description,
+	from = this.start,
+	to = this.end,
+	assignee = this.user.transform(User::toDto),
+	workOrder = this.workOrder.transform(WorkOrder::toDto)
+)
+
+fun User.toDto() = UserDto(
+	id = this.id,
+	name = this.name
+)
+
+fun WorkOrder.toDto() = WorkOrderDto(
+	id = this.id,
+	title = this.title,
+	description = this.description
+)
+
+
+
+fun <FROM, TO>FROM?.transform(callback: (FROM) -> TO) = if (this != null) callback(this) else null

@@ -1,13 +1,15 @@
-app.controller('CreateController', function($scope, $http) {
+app.controller('CreateTaskController', function($scope, $http) {
 	$scope.task = {
 		title: '',
 		assignee: '',
 		from: '',
 		to: '',
-		description: ''
+		description: '',
+		workOrder: ''
 
-	}
+	};
+
 	$scope.submit = function() {
 		$http.post("/api/tasks/task", $scope.task);
-	}
+	};
 });

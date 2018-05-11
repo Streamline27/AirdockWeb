@@ -4,7 +4,7 @@ app.controller('TaskListController', function($scope, $http, $state, $httpParamS
 	});
 
 	$scope.redirectToEdit = function(id) {
-		$state.go('edit', {taskId : id});
+		$state.go('edit/task', {taskId : id});
 	};
 
 	$scope.deleteTask = function(id) {

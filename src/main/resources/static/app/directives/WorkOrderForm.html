@@ -1,0 +1,15 @@
+<form>
+	<div class="form-group row">
+		<label for="nameInput" class="col-sm-2 col-form-label">Work Order Name</label>
+		<div class="col-sm-10">
+			<input ng-model='workOrder.title' type="text" class="form-control" id="nameInput" placeholder="Enter Task Name"/>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="descriptionInput" class="col-sm-2 col-form-label">Description</label>
+		<div class="col-sm-10">
+			<textarea ng-model='workOrder.description' class="form-control" id="descriptionInput" rows="2"></textarea>
+		</div>
+	</div>
+	<button ng-click="onSubmit()" type="submit" class="btn btn-primary">Submit</button>
+</form>

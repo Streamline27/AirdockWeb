@@ -11,6 +11,11 @@ app.directive('taskForm', ['$http', function($http){
 			$http.get("/api/users/workers").then(function(response) {
 				$scope.assignees = [{id: '', name: 'None'}, ...response.data];
 			});
+
+			$scope.workOrders = [{id: '', title: 'None'}];
+			$http.get("/api/workorders").then(function(response) {
+				$scope.workOrders = [{id: '', title: 'None'}, ...response.data];
+			});
         }
     }
 }]);

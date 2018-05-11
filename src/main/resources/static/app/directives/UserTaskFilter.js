@@ -6,7 +6,16 @@ app.directive('userTaskFilter', ['$http', function($http){
         },
         templateUrl: 'app/directives/UserTaskFilter.html',
         link: function($scope, element, attr){
-        	$scope.filter = {};
+        	$scope.workOrders = [{id: '', title: 'None'}];
+			$http.get("/api/workorders").then(function(response) {
+				$scope.workOrders = [{id: '', title: 'None'}, ...response.data];
+			});
+
+
+        	$scope.filter = {
+        		workOrder: '',
+        		name: ''
+        	};
 			var baseFilter = Object.assign({}, $scope.filter);
 
 			function onChangeEvent() {

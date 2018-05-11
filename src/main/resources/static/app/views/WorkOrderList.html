@@ -1,0 +1,24 @@
+<top-navigation></top-navigation>
+
+<div class="main row">
+
+	<side-menu class="col-md-2"></side-menu>
+	<div class="content col-md-9">
+
+		<div class="panel-group">
+			<div ng-repeat="workOrder in workOrders" class="panel panel-default">
+				<div class="panel-heading">{{workOrder.title}}</div>
+				<div class="panel-body">
+					<div class="col-md-10">
+						{{workOrder.description}}
+					</div>
+					<button ng-click="redirectToEdit(workOrder.id)" type="button" class="btn btn-primary col-md-1">Edit</button>
+					<button ng-click="deleteTask(workOrder.id)" type="button" class="btn btn-danger col-md-1">Delete</button>
+				</div>
+			</div>
+		</div>
+		<button ng-click="redirectToCreate()" type="button" class="btn btn-primary col-md-1">Create New</button>
+
+	</div> <!-- End content! -->
+
+</div> <!-- End main! -->
