@@ -12,4 +12,10 @@ h2 link: `http://localhost:8080/h2-console`
 
 ###Do Before Start
 
+### Test environment
+App is deployed on linode: http://213.219.36.14:8080/#!/login
+
+to connect: ssh root@213.219.36.14
+
+linode: https://manager.linode.com/
 
