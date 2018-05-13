@@ -53,5 +53,10 @@ class JWTCheckPasswordFilter(var authManager: AuthenticationManager) : UsernameP
                 .compact()
 
         response.addHeader(HEADER_STRING, TOKEN_PREFIX +token)
+        with(response.writer) {
+            write("{}")
+            flush()
+            close()
+        }
     }
 }

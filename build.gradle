@@ -48,8 +48,6 @@ repositories {
 
 
 dependencies {
-    compile('lv.tti:airdock-api:1.0')
-
 //	spring
     compile('org.springframework.boot:spring-boot-starter')
     compile('org.springframework.boot:spring-boot-devtools')
@@ -63,7 +61,6 @@ dependencies {
     compile("io.springfox:springfox-swagger-ui:${swaggerVersion}")
 
 // security
-//    compile 'org.springframework.security:spring-security-web:5.0.4.RELEASE'
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("io.jsonwebtoken:jjwt:0.7.0")
 //	logger
