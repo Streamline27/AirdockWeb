@@ -11,20 +11,20 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/api")
 class TaskController {
 
     @Autowired lateinit var taskService: TaskService
     @Autowired lateinit var userService: UserService
     @Autowired lateinit var workOrderService: WorkOrderService
 
-    @GetMapping("/{id}")
+    @GetMapping("/task/{id}")
     fun getTask(@PathVariable("id") id : Long) = taskService.getTaskById(id).toLargeDto()
 
 	@GetMapping()
     fun getTasks() = taskService.getAllTasks().map(Task::toLargeDto)
 
-	@GetMapping("/search")
+	@GetMapping("/tasks/search")
 	fun searchTasks(@RequestParam filter: Map<String,String>?): List<Task> {
 		if (filter == null || filter.isEmpty())
 			return taskService.getAllTasks()
@@ -36,12 +36,12 @@ class TaskController {
 		taskService.saveTask(task.fromDto())
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("task/{id}")
 	fun updateTask(@PathVariable id: Long, @RequestBody task: TaskDto) {
 		taskService.saveTask(task.fromDto(id))
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("task/{id}")
 	fun updateTask(@PathVariable id: Long) {
 		taskService.deleteTask(id)
 	}
