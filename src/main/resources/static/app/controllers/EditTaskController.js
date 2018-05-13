@@ -11,7 +11,7 @@ app.controller('EditTaskController', function($scope, $http, $stateParams) {
 
 	var id = $stateParams.taskId;
 
-	$http.get("/api/tasks/" + id).then(function(response) {
+	$http.get("/api/task/" + id).then(function(response) {
 		var task = response.data;
 		$scope.task = {
 			title: task.title,

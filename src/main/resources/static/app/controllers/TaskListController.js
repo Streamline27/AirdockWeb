@@ -8,7 +8,7 @@ app.controller('TaskListController', function($scope, $http, $state, $httpParamS
 	};
 
 	$scope.deleteTask = function(id) {
-		$http.delete("/api/tasks/" + id).then(function(response) {
+		$http.delete("/api/task/" + id).then(function(response) {
 			$scope.tasks = $scope.tasks.filter(function(task) { return task.id !== id});
 		})
 	};
