@@ -21,7 +21,7 @@ class TaskController {
     @GetMapping("/task/{id}")
     fun getTask(@PathVariable("id") id : Long) = taskService.getTaskById(id).toLargeDto()
 
-	@GetMapping()
+	@GetMapping("/tasks")
     fun getTasks() = taskService.getAllTasks().map(Task::toLargeDto)
 
 	@GetMapping("/tasks/search")
