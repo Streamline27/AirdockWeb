@@ -50,8 +50,8 @@ class TaskController {
 			id = id,
 			title = this.title,
 			description = this.description,
-			start = this.from,
-			end = this.to,
+			startDate = this.from,
+			endDate = this.to,
 			user = this.assignee.transform(userService::getById),
 			workOrder = this.workOrder.transform(workOrderService::getById)
 	)
