@@ -23,8 +23,10 @@ fun Task.toLargeDto() =	LargeTaskDto(
 	description = this.description,
 	from = this.startDate,
 	to = this.endDate,
+	created = this.creationDate,
 	assignee = this.user.transform(User::toDto),
-	workOrder = this.workOrder.transform(WorkOrder::toDto)
+	workOrder = this.workOrder.transform(WorkOrder::toDto),
+	status = this.status.toString()
 )
 
 fun User.toDto() = UserDto(

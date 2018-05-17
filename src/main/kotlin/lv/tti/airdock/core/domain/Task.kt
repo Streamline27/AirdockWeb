@@ -18,6 +18,9 @@ data class Task(
 		@Column(name = "end_date") 		var endDate: Date? = null,
 		@Column(name = "creation_date") var creationDate: Date? = null,
 
+		@Enumerated(EnumType.STRING)
+		@Column(name = "status") var status : Status? = null,
+
 		@ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id", referencedColumnName = "id")
         var user: User? = null,
@@ -25,4 +28,11 @@ data class Task(
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = "WORK_ORDER_ID", referencedColumnName = "id")
 		var workOrder: WorkOrder? = null
-)
+) {
+	enum class Status{
+		TODO,
+		IN_PROGRESS,
+		DONE,
+		LATER
+	}
+}

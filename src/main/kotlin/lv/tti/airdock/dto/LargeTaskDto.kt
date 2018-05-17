@@ -10,6 +10,8 @@ class LargeTaskDto(
 		var description: String = "",
 		var from: Date? = null,
 		var to: Date? = null,
+		var created: Date? = null,
 		var assignee: UserDto? = null,
-		var workOrder: WorkOrderDto? = null
+		var workOrder: WorkOrderDto? = null,
+		var status : String? = null
 )

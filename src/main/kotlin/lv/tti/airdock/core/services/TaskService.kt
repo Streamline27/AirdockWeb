@@ -2,6 +2,7 @@ package lv.tti.airdock.core.services
 
 import lv.tti.airdock.core.database.TaskRepository
 import lv.tti.airdock.core.domain.Task
+import lv.tti.airdock.core.utilities.transform
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
@@ -21,6 +22,7 @@ class TaskService {
 
     fun saveTask(task: Task) {
         task.creationDate = Date()
+        task.status = Task.Status.TODO
         taskDao.save(task)
     }
 
