@@ -21,8 +21,8 @@ fun Task.toLargeDto() =	LargeTaskDto(
 	id = this.id,
 	title = this.title,
 	description = this.description,
-	from = this.start,
-	to = this.end,
+	from = this.startDate,
+	to = this.endDate,
 	assignee = this.user.transform(User::toDto),
 	workOrder = this.workOrder.transform(WorkOrder::toDto)
 )

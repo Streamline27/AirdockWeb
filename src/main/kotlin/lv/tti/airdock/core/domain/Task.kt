@@ -14,8 +14,9 @@ data class Task(
 		@Column(name = "title")       var title: String,
 		@Column(name = "description") var description: String,
 
-		@Column(name = "start_date") var start: Date? = null,
-		@Column(name = "end_date") var end: Date? = null,
+		@Column(name = "start_date") 	var startDate: Date? = null,
+		@Column(name = "end_date") 		var endDate: Date? = null,
+		@Column(name = "creation_date") var creationDate: Date? = null,
 
 		@ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id", referencedColumnName = "id")

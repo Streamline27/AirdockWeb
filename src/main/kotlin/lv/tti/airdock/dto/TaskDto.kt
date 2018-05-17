@@ -10,6 +10,7 @@ class TaskDto(
 		var description: String = "",
 		var from: Date? = null,
 		var to: Date? = null,
+		var created: Date? = null,
 		var assignee: Long? = null,
 		var workOrder: Long? = null
 )

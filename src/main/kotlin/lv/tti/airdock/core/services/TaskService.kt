@@ -4,6 +4,7 @@ import lv.tti.airdock.core.database.TaskRepository
 import lv.tti.airdock.core.domain.Task
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class TaskService {
@@ -18,7 +19,10 @@ class TaskService {
         return taskDao.search(filter["name"].orEmpty(), filter["workOrder"].orEmpty())
     }
 
-    fun saveTask(task: Task) = taskDao.save(task)
+    fun saveTask(task: Task) {
+        task.creationDate = Date()
+        taskDao.save(task)
+    }
 
     fun deleteTask(id: Long) = taskDao.deleteById(id)
 }
