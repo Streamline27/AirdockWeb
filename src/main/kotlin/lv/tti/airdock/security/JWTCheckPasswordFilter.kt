@@ -3,7 +3,7 @@ package lv.tti.airdock.security
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import lv.tti.airdock.dto.LoginDto
+import lv.tti.airdock.rest.dto.LoginDto
 import lv.tti.airdock.security.utilities.EXPIRATION_TIME
 import lv.tti.airdock.security.utilities.HEADER_STRING
 import lv.tti.airdock.security.utilities.SECRET

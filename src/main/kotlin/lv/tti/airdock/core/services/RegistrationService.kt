@@ -5,7 +5,7 @@ import lv.tti.airdock.core.database.UserRepository
 import lv.tti.airdock.core.domain.Credentials
 import lv.tti.airdock.core.domain.User
 import lv.tti.airdock.core.utilities.UserException
-import lv.tti.airdock.dto.RegistrationDto
+import lv.tti.airdock.rest.dto.RegistrationDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 

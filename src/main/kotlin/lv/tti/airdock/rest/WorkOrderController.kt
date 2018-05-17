@@ -1,9 +1,9 @@
 package lv.tti.airdock.rest
 
 import lv.tti.airdock.core.domain.WorkOrder
-import lv.tti.airdock.dto.TaskDto
+import lv.tti.airdock.rest.dto.TaskDto
 import lv.tti.airdock.core.services.WorkOrderService
-import lv.tti.airdock.dto.WorkOrderDto
+import lv.tti.airdock.rest.dto.WorkOrderDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 

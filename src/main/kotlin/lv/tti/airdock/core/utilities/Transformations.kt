@@ -3,9 +3,9 @@ package lv.tti.airdock.core.utilities
 import lv.tti.airdock.core.domain.Task
 import lv.tti.airdock.core.domain.User
 import lv.tti.airdock.core.domain.WorkOrder
-import lv.tti.airdock.dto.LargeTaskDto
-import lv.tti.airdock.dto.UserDto
-import lv.tti.airdock.dto.WorkOrderDto
+import lv.tti.airdock.rest.dto.LargeTaskDto
+import lv.tti.airdock.rest.dto.UserDto
+import lv.tti.airdock.rest.dto.WorkOrderDto
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *

@@ -4,11 +4,9 @@ import lv.tti.airdock.core.domain.User
 import lv.tti.airdock.core.services.RegistrationService
 import lv.tti.airdock.core.services.SessionService
 import lv.tti.airdock.core.services.UserService
-import lv.tti.airdock.dto.RegistrationDto
-import lv.tti.airdock.dto.UserDto
+import lv.tti.airdock.rest.dto.RegistrationDto
+import lv.tti.airdock.rest.dto.UserDto
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
