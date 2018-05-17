@@ -5,7 +5,6 @@ import javax.persistence.*
 
 @Entity(name = "Task")
 data class Task(
-
 		@Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
