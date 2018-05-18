@@ -36,6 +36,13 @@ VALUES('4', '2', '1','Change email for user', '2018-05-24', '2018-05-28', '2018-
 INSERT INTO TASK(ID, WORK_ORDER_ID, USER_ID, TITLE, END_DATE, START_DATE, CREATION_DATE, STATUS, DESCRIPTION)
 VALUES('5', '1', '1', 'Write bachelors thesis', '2018-05-24', '2018-05-28', '2018-05-24', 'TODO', '— Я знаю, милая, добрая княжна, — сказала Анна Михайловна, хватаясь рукой за портфель и так крепко, что видно было, она не скоро его пустит. — Милая княжна, я вас прошу, я вас умоляю, пожалейте его. Je vous en conjure...[203]');
 
+-- Requests --
+INSERT INTO REQUEST(ID, AUTHOR, TITLE, DESCRIPTION, CREATION_DATE, STATUS)
+VALUES('1', '1', 'Make notifications', 'Please notify us, when something is wrong with the application, otherwise, we can not identify the responsible for the delay', '2018-05-28', 'PENDING');
+
+INSERT INTO REQUEST(ID, AUTHOR, TITLE, DESCRIPTION, CREATION_DATE, STATUS)
+VALUES('2', '1', 'Hurry Up', 'Bach defense is upon us, we must brace our selves for the incoming storm and increase our production speed', '2018-05-28', 'PENDING');
+
 /******
     Creating users
  */

@@ -1,48 +1,34 @@
 package lv.tti.airdock.rest
 
-import lv.tti.airdock.core.domain.WorkOrder
-import lv.tti.airdock.rest.dto.TaskDto
-import lv.tti.airdock.core.services.WorkOrderService
+import lv.tti.airdock.core.services.ServiceKeeper.workOrderService
+import lv.tti.airdock.core.utilities.fromDto
+import lv.tti.airdock.core.utilities.toDto
 import lv.tti.airdock.rest.dto.WorkOrderDto
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/workorders")
 class WorkOrderController {
 
-    @Autowired lateinit var workOrderService: WorkOrderService
-
 	@GetMapping()
     fun getWorkOrders() = workOrderService.getWorkOrders()
 
-	@GetMapping("/{id}")
-	fun getWorkOrder(@PathVariable("id") id : Long) = workOrderService.getById(id)
+	@GetMapping("{id}")
+	fun getWorkOrder(@PathVariable("id") id : Long) = workOrderService.getById(id).toDto()
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("{id}")
 	fun updateTask(@PathVariable id: Long) {
 		workOrderService.deleteWorkOrder(id)
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("workorder/{id}")
 	fun updateTask(@PathVariable id: Long, @RequestBody workOrder: WorkOrderDto) {
-		workOrderService.saveWorkOrder(
-				WorkOrder(
-						id = id,
-						title = workOrder.title,
-						description = workOrder.description
-				)
-		)
+		workOrderService.saveWorkOrder(workOrder.fromDto(id))
 	}
 
-	@PostMapping("/workorder")
-	fun saveTask(@RequestBody task: TaskDto) {
-		workOrderService.saveWorkOrder(
-				WorkOrder(
-						title = task.title,
-						description = task.description
-				)
-		)
+	@PostMapping("workorder")
+	fun saveWorkOrder(@RequestBody workOrder: WorkOrderDto) {
+		workOrderService.saveWorkOrder(workOrder.fromDto())
 	}
 
 }

@@ -30,6 +30,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'jwtOptions
 				requiresLogin: true
 			}
 		})
+		.state('requests', {
+			url: '/requests',
+			controller: 'RequestListController',
+			templateUrl: 'app/views/RequestList.html',
+			data: {
+				requiresLogin: true
+			}
+		})
         .state('users', {
             url: '/users',
             controller: 'UsersController',

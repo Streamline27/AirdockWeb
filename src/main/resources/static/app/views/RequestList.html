@@ -1,0 +1,40 @@
+<top-navigation></top-navigation>
+
+<div class="main row">
+
+	<side-menu class="col-md-2"></side-menu>
+	<div class="content col-md-9">
+
+		<div class="form-group">
+			<label for="requestStatusInput" class="col-form-label">Work Order</label>
+			<div>
+				<select ng-options="status as status for status in statuses"
+						ng-model='status' ng-init="status = 'PENDING'"
+						class="form-control" id="requestStatusInput" ng-change='onChange()'>
+				</select>
+			</div>
+		</div>
+
+		<div class="panel-group">
+			<div ng-repeat="request in requests[status]" class="panel panel-default">
+				<div class="panel-heading">{{request.title}}</div>
+				<div class="panel-body">
+					<div class="col-md-10">
+						<div>
+							{{request.description}}
+						</div>
+						<div>
+							Requested by: {{request.author.name}}
+						</div>
+						<div>
+							Created: {{request.created}}
+						</div>
+					</div>
+					<button ng-if="isPending()" ng-click="accept(request.id)" type="button" class="btn btn-primary col-md-1">Accept</button>
+					<button ng-if="isPending()" ng-click="cancel(request.id)" type="button" class="btn btn-danger col-md-1">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div> <!-- End content! -->
+
+</div> <!-- End main! -->

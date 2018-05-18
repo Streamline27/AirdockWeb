@@ -1,31 +1,20 @@
 package lv.tti.airdock.rest
 
-import lv.tti.airdock.core.domain.User
-import lv.tti.airdock.core.services.RegistrationService
-import lv.tti.airdock.core.services.SessionService
-import lv.tti.airdock.core.services.UserService
+import lv.tti.airdock.core.services.ServiceKeeper.registrationService
+import lv.tti.airdock.core.services.ServiceKeeper.userService
+import lv.tti.airdock.core.utilities.toDto
 import lv.tti.airdock.rest.dto.RegistrationDto
 import lv.tti.airdock.rest.dto.UserDto
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("api/users")
 class UserController {
 
-	@Autowired lateinit var userService: UserService
-	@Autowired lateinit var sessionService: SessionService
-	@Autowired lateinit var registrationService: RegistrationService
-
-	@GetMapping("/workers")
-	fun getWorkers() : List<UserDto> = userService.getWorkers().map { it.toUserDto() }
+	@GetMapping("workers")
+	fun getWorkers() : List<UserDto> = userService.getWorkers().map { it.toDto() }
 
 	@PostMapping("worker/register")
-	fun register(@RequestBody @Valid userDto : RegistrationDto) : UserDto = registrationService.registerWorker(userDto).toUserDto()
-
-	fun User.toUserDto() = UserDto(
-			id = this.id,
-			name = this.name
-	)
+	fun register(@RequestBody @Valid userDto : RegistrationDto) : UserDto = registrationService.registerWorker(userDto).toDto()
 }
