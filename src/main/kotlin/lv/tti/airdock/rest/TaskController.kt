@@ -6,6 +6,7 @@ import lv.tti.airdock.core.services.UserService
 import lv.tti.airdock.core.services.WorkOrderService
 import lv.tti.airdock.core.utilities.toLargeDto
 import lv.tti.airdock.core.utilities.transform
+import lv.tti.airdock.rest.dto.LargeTaskDto
 import lv.tti.airdock.rest.dto.TaskDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -25,12 +26,12 @@ class TaskController {
     fun getTasks() = taskService.getAllTasks().map(Task::toLargeDto)
 
 	@GetMapping("/tasks/search")
-	fun searchTasks(@RequestParam filter: Map<String,String>?): List<Task> {
+	fun searchTasks(@RequestParam filter: Map<String,String>?): List<LargeTaskDto> {
 		if (filter == null || filter.isEmpty()) {
-			return taskService.getAllTasks()
+			return taskService.getAllTasks().map(Task::toLargeDto)
 		}
 		else {
-			return taskService.searchTasks(filter)
+			return taskService.searchTasks(filter).map(Task::toLargeDto)
 		}
 	}
 

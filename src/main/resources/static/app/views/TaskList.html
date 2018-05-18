@@ -16,7 +16,7 @@
 				<div class="panel-body">
 					<div class="col-md-10">
 						<div>
-							belongs to: {{task.workOrder.title || 'none'}} assigned to: {{task.user.name || 'none'}}
+							belongs to: {{task.workOrder.title || 'none'}} assigned to: {{task.assignee.name || 'none'}}
 						</div>
 						<div>
 							from: {{parseDate(task.from)}} to: {{parseDate(task.to)}}
