@@ -16,8 +16,11 @@ class RequestService {
 
     fun getRequestsBy(status: String?): List<Request> =
             if (status == null) repository.findAll()
-            else repository.findAllByStatus(Request.Status.valueOf(status))
+            else                repository.findAllByStatus(Request.Status.valueOf(status))
 
 
-    fun updateRequestStatus(id: Long, status: Request.Status) = repository.updateStatus(id, status)
+    fun updateRequestStatus(id: Long, status: Request.Status) : Request{
+        repository.updateStatus(id, status)
+        return repository.findById(id).get()
+    }
 }
