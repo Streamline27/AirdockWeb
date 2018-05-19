@@ -1,24 +1,33 @@
 <form>
 
-    <div class="form-group"> <!-- title -->
-        <label for="nameInput" class="col-form-label">Task Name</label>
-        <input ng-model='task.title' type="text" class="form-control" id="nameInput" placeholder="Enter Task Name"/>
-    </div><!-- End title -->
+
 
     <div class="form-group"><!-- Buttons -->
+
         <div class="row">
-            <div class="col-md-12">
-                <label>Set status:</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button type="button" class="btn btn-primary">Todo</button>
-                <button type="button" class="btn btn-success">Done</button>
-                <button type="button" class="btn btn-danger">Canceled</button>
+            <div class="col-md-1">
+                <label for="nameInput" class="col-form-label">Status:</label>
+                <br/>
+                <div class="btn-group">
+                    <button type="button btn-primary" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Todo
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Done</a></li>
+                        <li><a href="#">Canceled</a></li>
+                    </ul>
+                </div>
 
             </div>
+            <div class="col-md-11">
+                <div class="form-group"> <!-- title -->
+                    <label for="nameInput" class="col-form-label">Task Name</label>
+                    <input ng-model='task.title' type="text" class="form-control" id="nameInput" placeholder="Enter Task Name"/>
+                </div><!-- End title -->
+            </div>
         </div>
+
     </div><!-- End buttons -->
 
     <div class="row"><!-- Date from-to -->

@@ -15,6 +15,3 @@
 
 /api/user/{id}/ GET
 /api/user/{id}/ PUT
-
-
-
