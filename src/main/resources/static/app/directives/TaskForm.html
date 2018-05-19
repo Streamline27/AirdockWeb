@@ -1,43 +1,62 @@
 <form>
-	<div class="form-group row">
-		<label for="nameInput" class="col-sm-2 col-form-label">Task Name</label>
-		<div class="col-sm-10">
-			<input ng-model='task.title' type="text" class="form-control" id="nameInput" placeholder="Enter Task Name"/>
+
+	<div class="form-group"> <!-- title -->
+		<label for="nameInput" class="col-form-label">Task Name</label>
+		<input ng-model='task.title' type="text" class="form-control" id="nameInput" placeholder="Enter Task Name"/>
+	</div><!-- End title -->
+
+	<div class="form-group"><!-- Buttons -->
+		<div class="row">
+			<div class="col-md-12">
+				<label>Set status:</label>
+			</div>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label for="descriptionInput" class="col-sm-2 col-form-label">Description</label>
-		<div class="col-sm-10">
-			<textarea ng-model='task.description' class="form-control" id="descriptionInput" rows="2"></textarea>
+		<div class="row">
+			<div class="col-md-12">
+				<button type="button" class="btn btn-primary">Todo</button>
+				<button type="button" class="btn btn-success">Done</button>
+				<button type="button" class="btn btn-danger">Canceled</button>
+
+			</div>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label for="fromInput" class="col-sm-1 col-form-label">From</label>
-		<span class='col-sm-5 input-group'>
-			<input ng-model='task.from' type='date' class="form-control" id='fromInput'/>
-		</span>
-		<label for="toInput" class="col-sm-1 col-form-label">To</label>
-		<span class='col-sm-5 input-group'>
-			<input ng-model='task.to' type='date' class="form-control" id='toInput'/>
-		</span>
-	</div>
-	<div class="form-group row">
-		<label for="assigneeInput" class="col-sm-1 col-form-label">Assignee</label>
-		<div class="col-sm-10">
+	</div><!-- End buttons -->
+
+	<div class="row"><!-- Date from-to -->
+		<div class="form-group col-md-6">
+			<label for="startDateInput">Start date</label>
+			<input ng-model='task.from' type='date' class="form-control" id='startDateInput'/>
+		</div>
+		<div class="form-group col-md-6">
+			<label for="endDateInput">End date</label>
+			<input ng-model='task.to' type='date' class="form-control" id='endDateInput'/>
+		</div>
+	</div><!-- End date from-to -->
+
+	<div class="row"><!-- Assignee work order -->
+		<div class="form-group col-md-5">
+			<label for="assigneeInput" class="col-form-label">Assignee</label>
 			<select ng-options="assignee.id as assignee.name for assignee in assignees"
 					ng-model='task.assignee' ng-init="task.assignee = ''"
 					class="form-control" id="assigneeInput">
 			</select>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label for="workOrderInput" class="col-sm-1 col-form-label">Work Order</label>
-		<div class="col-sm-10">
+		<div class="form-group col-md-7">
+			<label for="workOrderInput" class="col-form-label">Work Order</label>
 			<select ng-options="workOrder.id as workOrder.title for workOrder in workOrders"
 					ng-model='task.workOrder' ng-init="task.workOrder = ''"
 					class="form-control" id="workOrderInput">
 			</select>
 		</div>
+
+	</div> <!-- End Assignee / Work order -->
+
+	<div class="form-group"><!-- Description -->
+		<label for="descriptionInput" class="col-form-label">Description</label>
+		<textarea ng-model='task.description' class="form-control" id="descriptionInput" rows="2"></textarea>
+	</div> <!-- End description -->
+
+
+	<div class="form-group">
+		<button ng-click="onSubmit()" type="submit" class="btn btn-primary">Submit</button>
 	</div>
-	<button ng-click="onSubmit()" type="submit" class="btn btn-primary">Submit</button>
 </form>
