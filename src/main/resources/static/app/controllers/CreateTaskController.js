@@ -18,6 +18,6 @@ app.controller('CreateTaskController', ['$scope', '$http', function($scope, $htt
         $scope.workOrders = [{id: '', title: 'None'}].concat(response.data);
     });
 	$scope.submit = function() {
-		$http.post("/api/tas", $scope.task);
+		$http.post("/api/task", $scope.task);
 	};
 }]);
