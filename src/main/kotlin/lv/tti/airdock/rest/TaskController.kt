@@ -3,6 +3,7 @@ package lv.tti.airdock.rest
 import lv.tti.airdock.core.domain.Task
 import lv.tti.airdock.core.services.ServiceKeeper.taskService
 import lv.tti.airdock.core.utilities.fromDto
+import lv.tti.airdock.core.utilities.toDto
 import lv.tti.airdock.core.utilities.toLargeDto
 import lv.tti.airdock.rest.dto.LargeTaskDto
 import lv.tti.airdock.rest.dto.TaskDto
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 class TaskController {
 
     @GetMapping("/task/{id}")
-    fun getTask(@PathVariable("id") id : Long) = taskService.getTaskById(id).toLargeDto()
+    fun getTask(@PathVariable("id") id : Long) = taskService.getTaskById(id).toDto()
 
 	@GetMapping("/tasks")
     fun getTasks() = taskService.getAllTasks().map(Task::toLargeDto)
