@@ -15,7 +15,7 @@ class RequestStatusController {
 
 	@PutMapping("request/{id}/status/{status}")
 	fun updateRequestStatus(@PathVariable id: Long, @PathVariable status: String) =
-			requestService.updateRequestStatus(id, Request.Status.valueOf(status)).toLargeDto()
+			requestService.updateRequestStatus(id, Request.Status.valueOf(status)).toDto()
 
 	@GetMapping("request/statuses")
 	fun getRequestStatuses() = Request.Status.values().map { it.toString() }

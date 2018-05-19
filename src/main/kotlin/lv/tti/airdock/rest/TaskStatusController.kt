@@ -2,6 +2,7 @@ package lv.tti.airdock.rest
 
 import lv.tti.airdock.core.services.TaskStatusService
 import lv.tti.airdock.core.utilities.fromDto
+import lv.tti.airdock.core.utilities.toDto
 import lv.tti.airdock.core.utilities.toLargeDto
 import lv.tti.airdock.rest.dto.TaskStatusDto
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,6 +22,5 @@ class TaskStatusController {
         taskStatusService.updateTaskStatus(
                 id = id,
                 status = statusDto.fromDto()
-        ).toLargeDto()
-
+        ).toDto()
 }

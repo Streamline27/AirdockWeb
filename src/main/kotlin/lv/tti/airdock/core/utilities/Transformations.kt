@@ -57,6 +57,7 @@ fun Task.toLargeDto() = LargeTaskDto(
 )
 
 fun Task.toDto() = TaskDto(
+		id = this.id,
 		title = this.title,
 		description = this.description,
 		from = this.startDate,
@@ -79,6 +80,7 @@ fun WorkOrder.toDto() = WorkOrderDto(
 )
 
 fun Request.toDto() = RequestDto(
+		id = this.id,
 		title = this.title,
 		description = this.description,
 		author = this.author?.id,
