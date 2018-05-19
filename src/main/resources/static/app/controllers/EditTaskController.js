@@ -15,14 +15,15 @@ app.controller('EditTaskController', function($scope, $http, $stateParams) {
 		var task = response.data;
 		$scope.task = {
 			title: task.title,
-			assignee: "" + (task.user ? task.user.id : ""),
-			from: task.start ? new Date(task.start) : null,
-			to: task.end ? new Date(task.end) : null,
+			assignee: task.assignee,
+			from: task.from ? new Date(task.from) : null,
+			to: task.to ? new Date(task.to) : null,
+			created: task.created ? new Date(task.created) : null,
 			description: task.description,
-			workOrder: "" + (task.workOrder ? task.workOrder.id : "")
+			workOrder: task.workOrder
 		};
+		console.log($scope.task);
 	});
-
 
 	$scope.submit = function() {
 		$http.put("/api/tasks/" + id, $scope.task);

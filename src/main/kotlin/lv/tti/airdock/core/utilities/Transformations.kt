@@ -56,6 +56,17 @@ fun Task.toLargeDto() = LargeTaskDto(
 		status = this.status.toDto()
 )
 
+fun Task.toDto() = TaskDto(
+		title = this.title,
+		description = this.description,
+		from = this.startDate,
+		to = this.endDate,
+		created = this.creationDate,
+		assignee = this.user?.id,
+		workOrder = this.workOrder?.id,
+		status = this.status.toString()
+)
+
 fun User.toDto() = UserDto(
 		id = this.id,
 		name = this.name
@@ -70,7 +81,7 @@ fun WorkOrder.toDto() = WorkOrderDto(
 fun Request.toDto() = RequestDto(
 		title = this.title,
 		description = this.description,
-		author = this.author.transform { it.id },
+		author = this.author?.id,
 		created = this.creationDate,
 		status = this.status.toString()
 )
