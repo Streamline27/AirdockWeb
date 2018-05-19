@@ -10,9 +10,7 @@ import lv.tti.airdock.rest.dto.*
 import java.util.*
 
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * *
- *  Transformations from dto to domain objects
- */
+
 
 fun TaskDto.fromDto(id: Long? = null) = Task(
 		id = id,
@@ -55,7 +53,7 @@ fun Task.toLargeDto() = LargeTaskDto(
 		created = this.creationDate,
 		assignee = this.user.transform(User::toDto),
 		workOrder = this.workOrder.transform(WorkOrder::toDto),
-		status = this.status.toString()
+		status = this.status.toDto()
 )
 
 fun User.toDto() = UserDto(
@@ -85,6 +83,28 @@ fun Request.toLargeDto() = LargeRequestDto(
 		created = this.creationDate,
 		status = this.status.toString()
 )
+fun Task.Status.toDto() = when(this) {
+	Task.Status.TODO		 -> TaskStatusDto.TODO
+	Task.Status.IN_PROGRESS -> TaskStatusDto.IN_PROGRESS
+	Task.Status.DONE 		-> TaskStatusDto.DONE
+	Task.Status.CANCELED	-> TaskStatusDto.CANCELED
+	else -> throw IllegalArgumentException("Unmapped Task.Status")
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *  Transformations from dto to domain objects
+ */
+
+
+fun TaskStatusDto.fromDto() = when(this) {
+	TaskStatusDto.TODO		  -> Task.Status.TODO
+	TaskStatusDto.IN_PROGRESS -> Task.Status.IN_PROGRESS
+	TaskStatusDto.DONE 		  -> Task.Status.DONE
+	TaskStatusDto.CANCELED	  -> Task.Status.CANCELED
+	else -> throw IllegalArgumentException("Unmapped TaskStatusDto")
+}
+
+
 
 
 fun <FROM, TO> FROM?.transform(callback: (FROM) -> TO) = if (this != null) callback(this) else null

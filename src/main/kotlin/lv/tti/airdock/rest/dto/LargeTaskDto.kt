@@ -12,5 +12,5 @@ class LargeTaskDto(
 		var created: Date? = null,
 		var assignee: UserDto? = null,
 		var workOrder: WorkOrderDto? = null,
-		var status : String? = null
+		var status : TaskStatusDto = TaskStatusDto.UNDEFINED
 )

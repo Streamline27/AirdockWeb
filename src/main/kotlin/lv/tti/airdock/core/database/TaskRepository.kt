@@ -9,10 +9,20 @@ interface TaskRepository : JpaRepository<Task, Long> {
 
     fun findByUserId(id : Long) : List<Task>
 
-    @Query("SELECT t " +
-                   "FROM Task t LEFT JOIN t.user u LEFT JOIN t.workOrder w " +
-                   "WHERE (:name = '' OR (u IS NOT NULL AND LOWER(u.name) LIKE LOWER(CONCAT('%',:name,'%')))) " +
-                   "AND (:workOrder = '' OR (w IS NOT NULL AND LOWER(w.id) LIKE LOWER(:workOrder)))"
+    @Query(
+            """
+            SELECT t
+              FROM Task t LEFT JOIN t.user u LEFT JOIN t.workOrder w
+              WHERE (:name = '' OR (u IS NOT NULL AND LOWER(u.name) LIKE LOWER(CONCAT('%',:name,'%'))))
+                AND (:workOrder = '' OR (w IS NOT NULL AND LOWER(w.id) LIKE LOWER(:workOrder)))
+            """
     )
     fun search(@Param("name") name: String, @Param("workOrder") workOrder: String): List<Task>
+
+    @Query(
+            """
+            UPDATE Task SET STATUS = :status WHERE id = :id
+            """
+    )
+    fun updateTaskStatus(@Param("id") id : Long, @Param("status") status : Task.Status)
 }
