@@ -18,7 +18,7 @@ data class Task(
 		@Column(name = "creation_date") var creationDate: Date? = null,
 
 		@Enumerated(EnumType.STRING)
-		@Column(name = "status") var status : Status? = null,
+		@Column(name = "status") var status : Status = Status.TODO,
 
 		@ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -32,6 +32,6 @@ data class Task(
 		TODO,
 		IN_PROGRESS,
 		DONE,
-		LATER
+		CANCELED
 	}
 }

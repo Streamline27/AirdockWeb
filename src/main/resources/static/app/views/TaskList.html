@@ -21,6 +21,9 @@
 						<div>
 							from: {{parseDate(task.from)}} to: {{parseDate(task.to)}}
 						</div>
+						<div>
+							status: {{task.status}}
+						</div>
 					</div>
 					<button ng-click="redirectToEdit(task.id)" type="button" class="btn btn-primary col-md-1">Edit</button>
 					<button ng-click="deleteTask(task.id)" type="button" class="btn btn-danger col-md-1">Delete</button>

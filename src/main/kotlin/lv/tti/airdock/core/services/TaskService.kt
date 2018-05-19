@@ -2,6 +2,7 @@ package lv.tti.airdock.core.services
 
 import lv.tti.airdock.core.database.TaskRepository
 import lv.tti.airdock.core.domain.Task
+import lv.tti.airdock.core.utilities.toLargeDto
 import lv.tti.airdock.core.utilities.transform
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -16,8 +17,11 @@ class TaskService {
 
     fun getAllTasks(): List<Task> = taskDao.findAll()
 
-    fun searchTasks(filter: Map<String, String>): List<Task> {
-        return taskDao.search(filter["name"].orEmpty(), filter["workOrder"].orEmpty())
+    fun searchTasks(filter: Map<String, String>?): List<Task> {
+        if (filter == null || filter.isEmpty()) {
+            return getAllTasks()
+        }
+        else return taskDao.search(filter["name"].orEmpty(), filter["workOrder"].orEmpty())
     }
 
     fun saveTask(task: Task) {
@@ -27,4 +31,10 @@ class TaskService {
     }
 
     fun deleteTask(id: Long) = taskDao.deleteById(id)
+
+
+
+
+
+
 }
