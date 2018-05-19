@@ -1,6 +1,6 @@
 package lv.tti.airdock.rest.dto
 
-enum class StatusDto{
+enum class TaskStatusDto{
     TODO,
     IN_PROGRESS,
     DONE,

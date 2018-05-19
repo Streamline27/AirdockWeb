@@ -4,7 +4,7 @@ import lv.tti.airdock.core.domain.Task
 import lv.tti.airdock.core.domain.User
 import lv.tti.airdock.core.domain.WorkOrder
 import lv.tti.airdock.rest.dto.LargeTaskDto
-import lv.tti.airdock.rest.dto.StatusDto
+import lv.tti.airdock.rest.dto.TaskStatusDto
 import lv.tti.airdock.rest.dto.UserDto
 import lv.tti.airdock.rest.dto.WorkOrderDto
 
@@ -40,10 +40,10 @@ fun WorkOrder.toDto() = WorkOrderDto(
 )
 
 fun Task.Status.toDto() = when(this) {
-	Task.Status.TODO		 -> StatusDto.TODO
-	Task.Status.IN_PROGRESS -> StatusDto.IN_PROGRESS
-	Task.Status.DONE 		-> StatusDto.DONE
-	Task.Status.CANCELED	-> StatusDto.CANCELED
+	Task.Status.TODO		 -> TaskStatusDto.TODO
+	Task.Status.IN_PROGRESS -> TaskStatusDto.IN_PROGRESS
+	Task.Status.DONE 		-> TaskStatusDto.DONE
+	Task.Status.CANCELED	-> TaskStatusDto.CANCELED
 	else -> throw IllegalArgumentException("Unmapped Task.Status")
 }
 
@@ -52,12 +52,12 @@ fun Task.Status.toDto() = when(this) {
  */
 
 
-fun StatusDto.fromDto() = when(this) {
-	StatusDto.TODO		  -> Task.Status.TODO
-	StatusDto.IN_PROGRESS -> Task.Status.IN_PROGRESS
-	StatusDto.DONE 		  -> Task.Status.DONE
-	StatusDto.CANCELED	  -> Task.Status.CANCELED
-	else -> throw IllegalArgumentException("Unmapped StatusDto")
+fun TaskStatusDto.fromDto() = when(this) {
+	TaskStatusDto.TODO		  -> Task.Status.TODO
+	TaskStatusDto.IN_PROGRESS -> Task.Status.IN_PROGRESS
+	TaskStatusDto.DONE 		  -> Task.Status.DONE
+	TaskStatusDto.CANCELED	  -> Task.Status.CANCELED
+	else -> throw IllegalArgumentException("Unmapped TaskStatusDto")
 }
 
 

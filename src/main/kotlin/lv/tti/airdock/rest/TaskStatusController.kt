@@ -1,25 +1,23 @@
 package lv.tti.airdock.rest
 
-import lv.tti.airdock.core.services.StatusService
+import lv.tti.airdock.core.services.TaskStatusService
 import lv.tti.airdock.core.utilities.fromDto
-import lv.tti.airdock.core.utilities.transform
-import lv.tti.airdock.rest.dto.StatusDto
+import lv.tti.airdock.rest.dto.TaskStatusDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-import javax.xml.ws.Service
 
 @RestController
 @RequestMapping("/api")
-class StatusController {
+class TaskStatusController {
 
-    @Autowired lateinit var statusService: StatusService
+    @Autowired lateinit var taskStatusService: TaskStatusService
 
     @PutMapping("/task/{id}/status")
     fun setStatus(
             @RequestParam("id") id : Long,
-            @RequestBody statusDto: StatusDto
+            @RequestBody statusDto: TaskStatusDto
     ) {
-        statusService.updateTaskStatus(
+        taskStatusService.updateTaskStatus(
                 id = id,
                 status = statusDto.fromDto()
         )
