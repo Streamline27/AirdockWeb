@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank
 class TaskDto(
 		@get:NotBlank
 		var title: String = "",
-		var id : Long? = null,
+		var id: String? = null,
 		var status: String? = null,
 		var description: String = "",
 		var from: Date? = null,

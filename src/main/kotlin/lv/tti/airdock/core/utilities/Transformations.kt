@@ -45,7 +45,7 @@ fun WorkOrderDto.fromDto(id: Long? = null) = WorkOrder(
 
 
 fun Task.toLargeDto() = LargeTaskDto(
-		id = this.id,
+		id = this.id.toString(),
 		title = this.title,
 		description = this.description,
 		from = this.startDate,
@@ -57,7 +57,7 @@ fun Task.toLargeDto() = LargeTaskDto(
 )
 
 fun Task.toDto() = TaskDto(
-		id = this.id,
+		id = this.id.toString(),
 		title = this.title,
 		description = this.description,
 		from = this.startDate,
@@ -69,18 +69,18 @@ fun Task.toDto() = TaskDto(
 )
 
 fun User.toDto() = UserDto(
-		id = this.id,
+		id = this.id.toString(),
 		name = this.name
 )
 
 fun WorkOrder.toDto() = WorkOrderDto(
-		id = this.id,
+		id = this.id.toString(),
 		title = this.title,
 		description = this.description
 )
 
 fun Request.toDto() = RequestDto(
-		id = this.id,
+		id = this.id.toString(),
 		title = this.title,
 		description = this.description,
 		author = this.author?.id,
@@ -89,7 +89,7 @@ fun Request.toDto() = RequestDto(
 )
 
 fun Request.toLargeDto() = LargeRequestDto(
-		id = this.id,
+		id = this.id.toString(),
 		title = this.title,
 		description = this.description,
 		author = this.author.transform(User::toDto),

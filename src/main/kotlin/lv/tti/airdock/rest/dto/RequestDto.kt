@@ -3,7 +3,7 @@ package lv.tti.airdock.rest.dto
 import java.util.*
 
 class RequestDto(
-		var id : Long? = null,
+		var id : String? = null,
 		var title: String = "",
 		var status: String? = null,
 		var description: String = "",
