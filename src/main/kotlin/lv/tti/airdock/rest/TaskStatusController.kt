@@ -12,10 +12,10 @@ class TaskStatusController {
 
     @Autowired lateinit var taskStatusService: TaskStatusService
 
-    @PutMapping("/task/{id}/status")
+    @PutMapping("/task/{id}/status/{status}")
     fun setStatus(
-            @RequestParam("id") id : Long,
-            @RequestBody statusDto: TaskStatusDto
+            @PathVariable("id")     id        : Long,
+            @PathVariable("status") statusDto : TaskStatusDto
     ) {
         taskStatusService.updateTaskStatus(
                 id = id,

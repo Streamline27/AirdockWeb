@@ -2,8 +2,10 @@ package lv.tti.airdock.core.database
 
 import lv.tti.airdock.core.domain.Task
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
+import javax.transaction.Transactional
 
 interface TaskRepository : JpaRepository<Task, Long> {
 
@@ -21,8 +23,10 @@ interface TaskRepository : JpaRepository<Task, Long> {
 
     @Query(
             """
-            UPDATE Task SET STATUS = :status WHERE id = :id
+            UPDATE Task SET status = :status WHERE id = :id
             """
     )
+    @Modifying
+    @Transactional
     fun updateTaskStatus(@Param("id") id : Long, @Param("status") status : Task.Status)
 }

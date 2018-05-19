@@ -6,11 +6,90 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Edit task</div>
 			<div class="panel-body">
-				<task-form task="task" on-submit="submit()"></task-form>
+				<form>
+					<div class="form-group"><!-- Buttons -->
+
+						<div class="row">
+							<div class="col-md-2">
+								<label for="nameInput" class="col-form-label">Status:</label>
+								<br/>
+								<div class="btn-group">
+
+									<button
+											type="button btn-primary"
+											class="btn btn-primary dropdown-toggle"
+											data-toggle="dropdown">
+										{{ task.formattedStatus }}
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
+										<li ng-if="!isDone">
+											<a ng-click="setStatusDone()">Done</a>
+										</li>
+										<li ng-if="!isInProgress">
+											<a ng-click="setStatusInProgress()">In progress</a>
+										</li>
+										<li ng-if="!isTodo">
+											<a ng-click="setStatusTodo()">To do</a>
+										</li>
+										<li ng-if="!isCanceled">
+											<a ng-click="setStatusCanceled()">Canceled</a>
+										</li>
+									</ul>
+								</div>
+
+							</div>
+							<div class="col-md-10">
+								<div class="form-group"> <!-- title -->
+									<label for="nameInput" class="col-form-label">Task Name</label>
+									<input ng-model='task.title' type="text" class="form-control" id="nameInput" placeholder="Enter Task Name"/>
+								</div><!-- End title -->
+							</div>
+						</div>
+
+					</div><!-- End buttons -->
+
+
+					<div class="row"><!-- Assignee work order -->
+						<div class="form-group col-md-5">
+							<label for="assigneeInput" class="col-form-label">Assignee</label>
+							<select ng-options="assignee.id as assignee.name for assignee in assignees"
+									ng-model='task.assignee' ng-init="task.assignee = ''"
+									class="form-control" id="assigneeInput">
+							</select>
+						</div>
+						<div class="form-group col-md-7">
+							<label for="workOrderInput" class="col-form-label">Work Order</label>
+							<select ng-options="workOrder.id as workOrder.title for workOrder in workOrders"
+									ng-model='task.workOrder' ng-init="task.workOrder = ''"
+									class="form-control" id="workOrderInput">
+							</select>
+						</div>
+
+					</div> <!-- End Assignee / Work order -->
+
+					<div class="row"><!-- Date from-to -->
+						<div class="form-group col-md-6">
+							<label for="startDateInput">Start date</label>
+							<input ng-model='task.from' type='date' class="form-control" id='startDateInput'/>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="endDateInput">End date</label>
+							<input ng-model='task.to' type='date' class="form-control" id='endDateInput'/>
+						</div>
+					</div><!-- End date from-to -->
+
+					<div class="form-group"><!-- Description -->
+						<label for="descriptionInput" class="col-form-label">Description</label>
+						<textarea ng-model='task.description' class="form-control" id="descriptionInput" rows="2"></textarea>
+					</div> <!-- End description -->
+
+
+					<div class="form-group">
+						<button ng-click="submit()" type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
 			</div>
-		</div>
-
-
-
+		</div><!-- End panel -->
 	</div> <!-- End content! -->
 </div> <!-- End main! -->
