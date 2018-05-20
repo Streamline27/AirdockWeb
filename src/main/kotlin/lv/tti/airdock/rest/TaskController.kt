@@ -32,7 +32,7 @@ class TaskController {
     fun getTasks() = taskService.getAllTasks().map(Task::toLargeDto)
 
 	@GetMapping("/worker/{id}/tasks")
-	fun getUserTasks(@PathVariable("id") id : Long) = taskService.getUserTasks(id).map { it.toDto() }
+	fun getUserTasks(@PathVariable("id") id : Long) = taskService.getUserTasks(id).map { it.toLargeDto() }
 
     @PostMapping("/task")
 	fun saveTask(@RequestBody task: TaskDto) = taskService.saveTask(task.fromDto())
