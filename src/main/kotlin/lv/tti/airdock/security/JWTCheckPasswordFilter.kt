@@ -47,7 +47,7 @@ class JWTCheckPasswordFilter(var authManager: AuthenticationManager) : UsernameP
         val token = Jwts.builder()
                 .setSubject((authResult.principal as UserDetails).username)
                 .setExpiration(Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, SECRET)
+                .signWith(SignatureAlgorithm.HS512, Base64.getEncoder().encodeToString(SECRET.toByteArray()))
                 .claim("userId", credentials.user.id)
                 .claim("username", credentials.user.name)
                 .claim("role", credentials.user.role)
@@ -60,4 +60,6 @@ class JWTCheckPasswordFilter(var authManager: AuthenticationManager) : UsernameP
             close()
         }
     }
+
+
 }
