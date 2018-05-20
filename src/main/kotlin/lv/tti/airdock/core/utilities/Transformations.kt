@@ -44,7 +44,7 @@ fun WorkOrderDto.fromDto(id: Long? = null) = WorkOrder(
  */
 
 
-fun Task.toLargeDto() = LargeTaskDto(
+fun Task.toLargeDto() = TaskLargeDto(
 		id = this.id.toString(),
 		title = this.title,
 		description = this.description,
@@ -88,7 +88,7 @@ fun Request.toDto() = RequestDto(
 		status = this.status.toString()
 )
 
-fun Request.toLargeDto() = LargeRequestDto(
+fun Request.toLargeDto() = RequestLargeDto(
 		id = this.id.toString(),
 		title = this.title,
 		description = this.description,

@@ -2,11 +2,10 @@ package lv.tti.airdock.rest
 
 import lv.tti.airdock.core.domain.Task
 import lv.tti.airdock.core.services.ServiceKeeper.taskService
-import lv.tti.airdock.core.services.TaskService
 import lv.tti.airdock.core.utilities.fromDto
 import lv.tti.airdock.core.utilities.toDto
 import lv.tti.airdock.core.utilities.toLargeDto
-import lv.tti.airdock.rest.dto.LargeTaskDto
+import lv.tti.airdock.rest.dto.TaskLargeDto
 import lv.tti.airdock.rest.dto.TaskDto
 import org.springframework.web.bind.annotation.*
 
@@ -17,7 +16,7 @@ class TaskController {
 	@GetMapping("/tasks/search")
 	fun searchTasks(
 			@RequestParam filter: Map<String,String>?
-	): List<LargeTaskDto> {
+	): List<TaskLargeDto> {
 		if (filter == null || filter.isEmpty()) {
 			return taskService.getAllTasks().map(Task::toLargeDto)
 		}

@@ -1,17 +1,15 @@
 package lv.tti.airdock.rest.dto
 
 import java.util.*
-import javax.validation.constraints.NotBlank
 
-class TaskDto(
-		@get:NotBlank
-		var title		: String = "",
+class TaskLargeDto(
 		var id			: String? = null,
-		var status		: String? = null,
+		var title		: String = "",
 		var description	: String = "",
 		var from		: Date? = null,
 		var to			: Date? = null,
 		var created		: Date? = null,
-		var assignee	: Long? = null,
-		var workOrder	: Long? = null
+		var assignee	: UserDto? = null,
+		var workOrder	: WorkOrderDto? = null,
+		var status 		: TaskStatusDto = TaskStatusDto.UNDEFINED
 )
