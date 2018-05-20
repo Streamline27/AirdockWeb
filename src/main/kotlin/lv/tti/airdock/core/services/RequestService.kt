@@ -12,7 +12,6 @@ class RequestService {
 
     fun saveRequest(request: Request) = repository.save(request)
 
-    fun deleteRequest(id: Long) = repository.deleteById(id)
 
     fun getRequestsBy(status: String?): List<Request> =
             if (status == null) repository.findAll()
@@ -25,4 +24,9 @@ class RequestService {
     }
 
     fun getRequestsByUserId(id: Long): List<Request> = repository.findByAuthor(id)
+
+    fun deleteRequest(id: Long) : Long {
+        repository.deleteById(id)
+        return id;
+    }
 }

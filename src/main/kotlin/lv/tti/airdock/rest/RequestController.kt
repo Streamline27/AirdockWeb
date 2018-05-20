@@ -2,6 +2,7 @@ package lv.tti.airdock.rest
 
 import lv.tti.airdock.core.services.ServiceKeeper.requestService
 import lv.tti.airdock.core.utilities.fromDto
+import lv.tti.airdock.core.utilities.toDto
 import lv.tti.airdock.rest.dto.RequestDto
 import org.springframework.web.bind.annotation.*
 
@@ -19,6 +20,6 @@ class RequestController {
 	fun deleteRequest(@PathVariable id: Long) = requestService.deleteRequest(id)
 
 	@GetMapping("/worker/{id}/requests")
-	fun getUserRequests(@PathVariable id: Long) = requestService.getRequestsByUserId(id)
+	fun getUserRequests(@PathVariable id: Long) = requestService.getRequestsByUserId(id).map { it.toDto() }
 
 }
