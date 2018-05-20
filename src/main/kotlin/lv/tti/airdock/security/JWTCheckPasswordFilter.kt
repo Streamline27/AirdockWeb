@@ -48,6 +48,7 @@ class JWTCheckPasswordFilter(var authManager: AuthenticationManager) : UsernameP
                 .setSubject((authResult.principal as UserDetails).username)
                 .setExpiration(Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
+                .claim("userId", credentials.user.id)
                 .claim("username", credentials.user.name)
                 .claim("role", credentials.user.role)
                 .compact()
