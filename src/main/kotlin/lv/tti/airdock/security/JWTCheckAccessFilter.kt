@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
+import java.util.*
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -39,7 +40,7 @@ class JWTCheckAccessFilter(authManager : AuthenticationManager) : BasicAuthentic
             if (token != null) {
 
                 val username = Jwts.parser()
-                        .setSigningKey(SECRET)
+                        .setSigningKey(Base64.getEncoder().encodeToString(SECRET.toByteArray()))
                         .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                         .body
                         .subject
