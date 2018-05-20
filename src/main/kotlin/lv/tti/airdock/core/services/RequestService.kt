@@ -23,4 +23,6 @@ class RequestService {
         repository.updateStatus(id, status)
         return repository.findById(id).get()
     }
+
+    fun getRequestsByUserId(id: Long): List<Request> = repository.findByAuthor(id)
 }

@@ -24,6 +24,8 @@ class TaskService {
         else return taskDao.search(filter["name"].orEmpty(), filter["workOrder"].orEmpty())
     }
 
+    fun getUserTasks(userId : Long) = taskDao.findByUserId(userId)
+
     fun saveTask(task: Task) {
         task.creationDate = Date()
         task.status = Task.Status.TODO

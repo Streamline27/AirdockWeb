@@ -9,6 +9,9 @@ import javax.transaction.Transactional
 
 interface RequestRepository : JpaRepository<Request, Long> {
 
+	@Query("SELECT * FROM Request r WHERE r.author = :id", nativeQuery = true)
+	fun findByAuthor(@Param("id") userId : Long) : List<Request>
+
 	fun findAllByStatus(status: Request.Status): List<Request>
 
 	@Transactional
