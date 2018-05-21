@@ -27,6 +27,7 @@ data class Request (
 	enum class Status {
 		PENDING,
 		ACCEPTED,
-		CANCELLED
+		CANCELLED,
+		DRAFT
 	}
 }

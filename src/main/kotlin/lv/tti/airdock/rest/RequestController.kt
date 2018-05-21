@@ -14,7 +14,9 @@ class RequestController {
 	fun saveRequest(@RequestBody request: RequestDto) =	requestService.saveRequest(request.fromDto())
 
 	@PutMapping("/request/{id}")
-	fun updateRequest(@PathVariable id: Long, @RequestBody request: RequestDto) = requestService.saveRequest(request.fromDto(id))
+	fun updateRequest(@PathVariable id: Long, @RequestBody request: RequestDto) =
+            requestService.updateRequestField(request.fromDto(id))
+                    .toDto()
 
 	@DeleteMapping("/request/{id}")
 	fun deleteRequest(@PathVariable id: Long) = requestService.deleteRequest(id)

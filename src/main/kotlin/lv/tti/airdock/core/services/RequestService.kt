@@ -12,7 +12,6 @@ class RequestService {
 
     fun saveRequest(request: Request) = repository.save(request)
 
-
     fun getRequestsBy(status: String?): List<Request> =
             if (status == null) repository.findAll()
             else                repository.findAllByStatus(Request.Status.valueOf(status))
@@ -28,5 +27,14 @@ class RequestService {
     fun deleteRequest(id: Long) : Long {
         repository.deleteById(id)
         return id;
+    }
+
+    fun updateRequestField(request: Request) : Request{
+        repository.updateFieldsById(
+                id          = request.id!!,
+                description = request.description,
+                title       = request.title
+        )
+        return repository.findById(request.id!!).get()
     }
 }

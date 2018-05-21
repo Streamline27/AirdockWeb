@@ -19,4 +19,20 @@ interface RequestRepository : JpaRepository<Request, Long> {
 	@Query("UPDATE Request r SET r.status = :status WHERE r.id = :id")
 	fun updateStatus(@Param("id") id: Long, @Param("status") status: Request.Status)
 
+
+	@Query(
+			"""
+    		UPDATE Request r
+    		SET r.title = :title, r.description = :description
+    		WHERE r.id = :id
+    		"""
+	)
+	@Transactional
+	@Modifying
+	fun updateFieldsById(
+			@Param("id") 		  id 		  : Long,
+			@Param("title") 	  title 	  : String,
+			@Param("description") description : String
+	)
+
 }
