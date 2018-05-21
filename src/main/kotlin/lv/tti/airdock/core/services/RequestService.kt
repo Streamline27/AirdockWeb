@@ -4,13 +4,22 @@ import lv.tti.airdock.core.database.RequestRepository
 import lv.tti.airdock.core.domain.Request
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class RequestService {
 
+    @Autowired lateinit var sessionService: SessionService
     @Autowired lateinit var repository: RequestRepository
 
-    fun saveRequest(request: Request) = repository.save(request)
+    fun createDraftRequest() : Request {
+        val request = Request(
+                author = sessionService.getActiveUser().get(),
+                status = Request.Status.DRAFT,
+                creationDate = Date()
+        )
+        return repository.save(request)
+    }
 
     fun getRequestsBy(status: String?): List<Request> =
             if (status == null) repository.findAll()
