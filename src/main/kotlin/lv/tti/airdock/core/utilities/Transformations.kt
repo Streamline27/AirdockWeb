@@ -29,7 +29,7 @@ fun RequestDto.fromDto(id: Long? = null) = Request(
 		description = this.description,
 		author = this.author.transform(userService::getById),
 		creationDate = this.created ?: Date(),
-		status = this.status.transform(Request.Status::valueOf) ?: Request.Status.PENDING
+		status = this.status.transform(Request.Status::valueOf) ?: Request.Status.DRAFT
 )
 
 fun WorkOrderDto.fromDto(id: Long? = null) = WorkOrder(

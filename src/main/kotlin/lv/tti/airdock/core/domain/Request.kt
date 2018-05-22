@@ -11,8 +11,8 @@ data class Request (
 		@Column(name = "id")
 		var id: Long? = null,
 
-		@Column(name = "title")       var title: String,
-		@Column(name = "description") var description: String,
+		@Column(name = "title")       var title		  : String = "",
+		@Column(name = "description") var description : String = "",
 
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = "AUTHOR", referencedColumnName = "ID")
@@ -22,11 +22,12 @@ data class Request (
 		@Column(name = "creation_date") var creationDate: Date = Date(),
 
 		@Enumerated(EnumType.STRING)
-		@Column(name = "status") var status : Status = PENDING
+		@Column(name = "status") var status : Status = DRAFT
 ) {
 	enum class Status {
 		PENDING,
 		ACCEPTED,
-		CANCELLED
+		CANCELLED,
+		DRAFT
 	}
 }

@@ -4,14 +4,22 @@ import lv.tti.airdock.core.database.RequestRepository
 import lv.tti.airdock.core.domain.Request
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class RequestService {
 
+    @Autowired lateinit var sessionService: SessionService
     @Autowired lateinit var repository: RequestRepository
 
-    fun saveRequest(request: Request) = repository.save(request)
-
+    fun createDraftRequest() : Request {
+        val request = Request(
+                author = sessionService.getActiveUser().get(),
+                status = Request.Status.DRAFT,
+                creationDate = Date()
+        )
+        return repository.save(request)
+    }
 
     fun getRequestsBy(status: String?): List<Request> =
             if (status == null) repository.findAll()
@@ -28,5 +36,14 @@ class RequestService {
     fun deleteRequest(id: Long) : Long {
         repository.deleteById(id)
         return id;
+    }
+
+    fun updateRequestField(request: Request) : Request{
+        repository.updateFieldsById(
+                id          = request.id!!,
+                description = request.description,
+                title       = request.title
+        )
+        return repository.findById(request.id!!).get()
     }
 }
