@@ -32,6 +32,7 @@ data class Task(
 		TODO,
 		IN_PROGRESS,
 		DONE,
-		CANCELED
+		CANCELED,
+		SUSPENDED
 	}
 }

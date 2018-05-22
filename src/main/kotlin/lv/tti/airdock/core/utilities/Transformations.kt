@@ -101,6 +101,7 @@ fun Task.Status.toDto() = when(this) {
 	Task.Status.IN_PROGRESS -> TaskStatusDto.IN_PROGRESS
 	Task.Status.DONE 		-> TaskStatusDto.DONE
 	Task.Status.CANCELED	-> TaskStatusDto.CANCELED
+	Task.Status.SUSPENDED   -> TaskStatusDto.SUSPENDED
 	else -> throw IllegalArgumentException("Unmapped Task.Status")
 }
 
@@ -114,6 +115,7 @@ fun TaskStatusDto.fromDto() = when(this) {
 	TaskStatusDto.IN_PROGRESS -> Task.Status.IN_PROGRESS
 	TaskStatusDto.DONE 		  -> Task.Status.DONE
 	TaskStatusDto.CANCELED	  -> Task.Status.CANCELED
+	TaskStatusDto.SUSPENDED   -> Task.Status.SUSPENDED
 	else -> throw IllegalArgumentException("Unmapped TaskStatusDto")
 }
 
