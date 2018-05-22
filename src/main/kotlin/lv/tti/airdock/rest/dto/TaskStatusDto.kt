@@ -5,5 +5,6 @@ enum class TaskStatusDto{
     IN_PROGRESS,
     DONE,
     CANCELED,
-    UNDEFINED
+    UNDEFINED,
+    SUSPENDED
 }
