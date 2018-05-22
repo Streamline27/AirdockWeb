@@ -1,20 +1,43 @@
-<div class="form-group row">
-	<div class="form-group col-sm-5">
-		<label for="workOrderInput" class="col-form-label">Work Order</label>
-		<div>
-			<select ng-options="workOrder.id as workOrder.title for workOrder in workOrders"
-					ng-model='filter.workOrder' ng-init="filter.workOrder = ''"
-					class="form-control" id="workOrderInput" ng-change='onChange()'>
-			</select>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Task filters
+	</div>
+	<div class="panel-body">
+		<div class="form-group row">
+			<div class="form-group col-sm-5">
+				<label for="workOrderInput" class="col-form-label">Work Order</label>
+				<div>
+					<select ng-options="workOrder.id as workOrder.title for workOrder in workOrders"
+							ng-model='filter.workOrder' ng-init="filter.workOrder = ''"
+							class="form-control" id="workOrderInput" ng-change='onChange()'>
+					</select>
+				</div>
+			</div>
+			<div class="form-group  col-sm-5">
+				<label for="nameInput" class="col-form-label">Worker</label>
+				<div>
+					<input ng-change='onChange()' ng-model='filter.name' type="text" class="form-control" id="nameInput" placeholder="Worker Name..."/>
+				</div>
+			</div>
+			<div class="form-group  col-sm-2">
+				<label for="nameInput" class="col-form-label">Status</label>
+				<div>
+					<input type="text" class="form-control" id="nameInput" placeholder="Status"/>
+				</div>
+			</div>
 		</div>
+		<div class="form-group row"><!-- Date from-to -->
+			<div class="form-group col-md-6">
+				<label for="startDateInput">Start date</label>
+				<input ng-model='task.from' type='date' class="form-control" id='startDateInput'/>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="endDateInput">End date</label>
+				<input ng-model='task.to' type='date' class="form-control" id='endDateInput'/>
+			</div>
+		</div><!-- End date from-to -->
 	</div>
-	<div class="form-group  col-sm-5">
-		<label for="nameInput" class="col-form-label">Worker</label>
-		<div>
-			<input ng-change='onChange()' ng-model='filter.name' type="text" class="form-control" id="nameInput" placeholder="Worker Name..."/>
-		</div>
-	</div>
-	<div class="row col-md-2">
-		<input type="text" class="form-control" placeholder="Placeholder Input for future implementation"/>
-	</div>
+
 </div>
+

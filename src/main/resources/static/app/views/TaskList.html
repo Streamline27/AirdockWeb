@@ -5,11 +5,7 @@
 	<side-menu class="col-md-2"></side-menu>
 	<div class="content col-md-9">
 
-		<div class="panel">
-			<div class="panel-body">
-				<user-task-filter on-search="search(filter)"></user-task-filter>
-			</div>
-		</div>
+		<user-task-filter on-search="search(filter)"></user-task-filter>
 		<div class="panel-group">
 			<div ng-repeat="task in tasks" class="panel panel-default">
 				<div class="panel-heading">{{task.title}}</div>
