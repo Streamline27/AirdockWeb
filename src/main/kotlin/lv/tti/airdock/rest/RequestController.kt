@@ -20,7 +20,7 @@ class RequestController {
                     .toDto()
 
 	@DeleteMapping("/request/{id}")
-	fun deleteRequest(@PathVariable id: Long) = requestService.deleteRequest(id)
+	fun deleteRequest(@PathVariable id: Long) = requestService.deleteRequest(id).toString()
 
 	@GetMapping("/worker/{id}/requests")
 	fun getUserRequests(@PathVariable id: Long) = requestService.getRequestsByUserId(id).map { it.toDto() }

@@ -16,6 +16,8 @@ class RequestService {
         val request = Request(
                 author = sessionService.getActiveUser().get(),
                 status = Request.Status.DRAFT,
+                title = "Place your title here",
+                description = "Place the description here",
                 creationDate = Date()
         )
         return repository.save(request)
